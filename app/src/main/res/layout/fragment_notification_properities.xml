@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.fragment.notification.NotificationPropertiesFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/notification_properties_fragment_tv_notification_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimens_l"
+                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginTop="@dimen/dim_m"
+                android:text="@string/notification"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_s"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/notification_properties_fragment_rl_blood_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_message"
+                android:layout_below="@+id/notification_properties_fragment_tv_notification_text"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
+                android:background="@drawable/shape_edit_text_bg">
+
+                <TextView
+                    android:id="@+id/notification_properties_fragment_tv_title_blood_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_xxxxl"
+                    android:background="@drawable/edit_greydark"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/dimens_l"
+                    android:paddingStart="@dimen/dimens_l"
+                    android:text="@string/bloodtypes"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/txt_size_m" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/notification_properties_fragment_tv_title_blood_type"
+                    android:paddingEnd="@dimen/dim_s"
+                    android:paddingStart="@dimen/dim_m"
+                    android:paddingTop="@dimen/dim_m">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/notification_properties_fragment_rv_Blood_types"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/notification_properties_fragment_rl_governments"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_message"
+                android:layout_below="@id/notification_properties_fragment_rl_blood_type"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
+                android:background="@drawable/shape_edit_text_bg">
+
+                <TextView
+                    android:id="@+id/notification_properties_fragment_rl_tv_governments_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_xxxxl"
+                    android:background="@drawable/edit_greydark"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/dimens_l"
+                    android:paddingStart="@dimen/dimens_l"
+                    android:text="@string/goverments"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/txt_size_m" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/notification_properties_fragment_rl_tv_governments_title"
+                    android:paddingEnd="@dimen/dim_s"
+                    android:paddingStart="@dimen/dim_m"
+                    android:paddingTop="@dimen/dim_m">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/notification_properties_fragment_rv_governments_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/notification_properties_fragment_btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/notification_properties_fragment_rl_governments"
+                android:layout_marginBottom="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
+                android:background="@drawable/edit_move"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_m" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

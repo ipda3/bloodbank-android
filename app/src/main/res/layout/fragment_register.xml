@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Create_New_Account_Relatives"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    tools:context=".ui.fragment.userCycle.newAccount.RegisterFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/Create_New_Account_Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/CreateNewAcc_Toolbar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/Create_New_Account_Toolbar"
+        android:layout_alignParentTop="true"
+        android:background="@color/grey">
+
+        <TextView
+            android:id="@+id/CreateNewAcc_Toolbar_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/create_new"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_m"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/CreateNewAcc_Toolbar_Container">
+
+        <RelativeLayout
+            android:id="@+id/register_fragment_btn_register_rl_sub_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/register_fragment_et_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint="@string/name"
+                android:padding="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:singleLine="true"
+                android:textSize="@dimen/txt_size_m" />
+
+            <EditText
+                android:id="@+id/register_fragment_et_email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/register_fragment_et_name"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint="@string/email"
+                android:padding="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:singleLine="true"
+                android:textSize="@dimen/txt_size_m" />
+
+            <RelativeLayout
+                android:id="@+id/CreateNewAcc_Relative_Blood_Type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/register_fragment_et_email"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg">
+
+                <Spinner
+                    android:id="@+id/register_fragment_sp_blood_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </Spinner>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/CreateNewAcc_LinearLayout_Date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@+id/CreateNewAcc_Relative_Blood_Type"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/register_fragment_tv_birthday_data"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dim_m"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:drawableEnd="@drawable/date"
+                    android:gravity="center"
+                    android:hint="@string/birthDate"
+                    android:paddingEnd="@dimen/dim_m"
+                    android:paddingStart="@dimen/dim_m"
+                    android:textSize="@dimen/txt_size_m" />
+
+                <TextView
+                    android:id="@+id/register_fragment_tv_last_dontition_data"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:drawableEnd="@drawable/date"
+                    android:gravity="center"
+                    android:hint="@string/lastDate"
+                    android:paddingEnd="@dimen/dim_m"
+                    android:paddingStart="@dimen/dim_m"
+                    android:textSize="@dimen/txt_size_m" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/CreateNewAcc_LinearLayout_Spinners"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@+id/CreateNewAcc_LinearLayout_Date"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dim_m"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg">
+
+                    <Spinner
+                        android:id="@+id/register_fragment_sp_government"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg">
+
+                    <Spinner
+                        android:id="@+id/register_fragment_sp_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/register_fragment_et_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@+id/CreateNewAcc_LinearLayout_Spinners"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint="@string/phone"
+                android:inputType="number"
+                android:padding="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <EditText
+                android:id="@+id/register_fragment_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/register_fragment_et_phone_number"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <EditText
+                android:id="@+id/register_fragment_et_confirmation_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/register_fragment_et_password"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint="@string/passwore_sure"
+                android:inputType="textPassword"
+                android:padding="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+
+            <Button
+                android:id="@+id/register_fragment_btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/register_fragment_et_confirmation_password"
+                android:layout_marginBottom="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/edit_move"
+                android:text="@string/reg"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_m"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

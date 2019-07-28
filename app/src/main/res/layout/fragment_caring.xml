@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/Caring_ImageView_Main"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/caring"
+                android:layout_below="@id/toolbar"
+                android:layout_marginEnd="@dimen/dimens_l"
+                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginTop="@dimen/dim_m" />
+
+            <RelativeLayout
+                android:id="@+id/rlative_caring"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_6xl"
+                android:layout_below="@id/Caring_ImageView_Main"
+                android:layout_marginEnd="@dimen/dimens_l"
+                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginTop="@dimen/dim_m"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/Caring_Tv_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dim_m"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/txt_size_s"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dimens_xxl"
+                    android:layout_height="@dimen/dimens_xxl"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dim_m"
+                    android:background="@drawable/circle2">
+
+                    <ImageView
+                        android:id="@+id/Caring_ImageView_Care"
+                        android:layout_width="@dimen/dimens_l"
+                        android:layout_height="@dimen/dimens_l"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/lightheart" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/Caring_TextView_Content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/rlative_caring"
+                android:layout_marginEnd="@dimen/dimens_l"
+                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginTop="@dimen/dim_ss"
+                android:background="@color/white"
+                android:padding="@dimen/dim_s"
+                android:textColor="@color/black"
+                android:textSize="@dimen/txt_size_m"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

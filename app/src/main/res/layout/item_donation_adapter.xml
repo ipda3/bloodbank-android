@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimens_store_image"
+    android:layout_marginTop="@dimen/dim_m"
+    android:background="@drawable/halfcircleright"
+    android:padding="@dimen/dim_s">
+
+    <TextView
+        android:id="@+id/Donation_adapter_tv_blood_type"
+        android:layout_width="@dimen/circleTextView"
+        android:layout_height="@dimen/circleTextView"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dim_s"
+        android:background="@drawable/greycircle"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_xxl"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/Donation_adapter_ll_buttons_container"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/dim_sm"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/Donation_adapter_Btn_Details"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dim_sm"
+            android:layout_weight="1"
+            android:background="@drawable/edit_greydark"
+            android:scrollbarSize="@dimen/txt_size_s"
+            android:text="@string/details" />
+
+        <LinearLayout
+            android:id="@+id/Donation_adapter_rl_call_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dim_sm"
+            android:layout_weight="1"
+            android:background="@drawable/edit_green"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/call"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_s" />
+
+            <ImageView
+                android:layout_width="@dimen/callwhite"
+                android:layout_height="@dimen/callwhite"
+                android:layout_marginEnd="@dimen/dim_s"
+                android:layout_marginStart="@dimen/dim_s"
+                android:src="@drawable/callwhite" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dim_s"
+        android:layout_toEndOf="@id/Donation_adapter_tv_blood_type"
+        android:layout_toStartOf="@id/Donation_adapter_ll_buttons_container"
+        android:orientation="vertical"
+        android:padding="@dimen/dim_s">
+
+        <TextView
+            android:id="@+id/Donation_adapter_tv_patient_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/dim_m"
+            android:paddingStart="@dimen/dim_m"
+            android:paddingTop="@dimen/dim_s"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_ss" />
+
+        <TextView
+            android:id="@+id/Donation_adapter_tv_hospital_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/dim_m"
+            android:paddingStart="@dimen/dim_m"
+            android:paddingTop="@dimen/dim_s"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_ss" />
+
+        <TextView
+            android:id="@+id/Donation_adapter_tv_city_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/dim_m"
+            android:paddingStart="@dimen/dim_m"
+            android:paddingTop="@dimen/dim_s"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size_ss" />
+
+    </LinearLayout>
+</RelativeLayout>

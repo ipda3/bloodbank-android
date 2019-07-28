@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dim_m"
+    android:layout_marginStart="@dimen/dim_m"
+    android:layout_marginTop="@dimen/dim_m"
+    android:background="@drawable/editgrey2"
+    android:paddingBottom="@dimen/dimens_xl"
+    android:paddingEnd="@dimen/dim_s"
+    android:paddingStart="@dimen/dim_s"
+    android:paddingTop="@dimen/dimens_xl">
+
+    <ImageView
+        android:id="@+id/notification_list_adapter_iv_notification_image"
+        android:layout_width="@dimen/notiImg"
+        android:layout_height="@dimen/notiImg"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dim_m"
+        android:src="@drawable/noti2" />
+
+    <TextView
+        android:id="@+id/notification_list_adapter_tv_notification_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:layout_marginStart="@dimen/dim_m"
+        android:layout_toEndOf="@id/notification_list_adapter_iv_notification_image"
+        android:layout_toStartOf="@id/notification_list_adapter_iv_notification_Image_time"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_s" />
+
+    <TextView
+        android:id="@+id/notification_list_adapter_tv_notification_Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:text=""
+        android:textSize="@dimen/txt_size_ss" />
+
+    <ImageView
+        android:id="@+id/notification_list_adapter_iv_notification_Image_time"
+        android:layout_width="@dimen/dimens_l"
+        android:layout_height="@dimen/dimens_l"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dim_s"
+        android:layout_toStartOf="@id/notification_list_adapter_tv_notification_Time"
+        android:src="@drawable/time" />
+
+</RelativeLayout>

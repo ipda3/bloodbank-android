@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.profile.EditProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/edit_profile_fragment_rl_sub_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edit_profile_fragment_et_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint=""
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <EditText
+                android:id="@+id/edit_profile_fragment_et_email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/edit_profile_fragment_et_name"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint=""
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <RelativeLayout
+                android:id="@+id/edit_profile_fragment_rl_blood_type_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/edit_profile_fragment_et_email"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg">
+
+                <Spinner
+                    android:id="@+id/edit_profile_fragment_sp_blood_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/txt_size_m" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/Adjust_Information_Linear_Date"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@+id/edit_profile_fragment_rl_blood_type_container"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/edit_profile_fragment_tv_birthday_data"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dim_m"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:drawableEnd="@drawable/date"
+                    android:gravity="center"
+                    android:hint=""
+                    android:paddingEnd="@dimen/dim_m"
+                    android:paddingStart="@dimen/dim_m"
+                    android:textSize="@dimen/txt_size_m" />
+
+                <TextView
+                    android:id="@+id/edit_profile_fragment_tv_last_donition_data"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:drawableEnd="@drawable/date"
+                    android:gravity="center"
+                    android:hint=""
+                    android:paddingEnd="@dimen/dim_m"
+                    android:paddingStart="@dimen/dim_m"
+                    android:textSize="@dimen/txt_size_m" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Adjust_Information_Linear_Spinners"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/Adjust_Information_Linear_Date"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg">
+
+                    <Spinner
+                        android:id="@+id/edit_profile_fragment_sp_government"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/txt_size_m" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dim_m"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg">
+
+                    <Spinner
+                        android:id="@+id/edit_profile_fragment_sp_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/txt_size_m" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/edit_profile_fragment_et_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/Adjust_Information_Linear_Spinners"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint=""
+                android:inputType="number"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <EditText
+                android:id="@+id/edit_profile_fragment_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/edit_profile_fragment_et_phone_number"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint=""
+                android:inputType="textPassword"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <EditText
+                android:id="@+id/edit_profile_fragment_et_confirmation_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/edit_profile_fragment_et_password"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/shape_edit_text_bg"
+                android:hint=""
+                android:inputType="textPassword"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m"
+                android:textSize="@dimen/txt_size_m" />
+
+            <Button
+                android:id="@+id/edit_profile_fragment_btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_xxxxl"
+                android:layout_below="@id/edit_profile_fragment_et_confirmation_password"
+                android:layout_marginBottom="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dimens_xl"
+                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:background="@drawable/edit_move"
+                android:text="@string/adjust"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_m"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".ui.fragment.articles_requests.DonationRequestsFragment">
+
+    <ImageView
+        android:id="@+id/donation_requests_fragment_iv_search"
+        android:layout_width="@dimen/dimens_xxxl"
+        android:layout_height="@dimen/dimens_xxxl"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:layout_marginTop="@dimen/dimens_l"
+        android:background="@drawable/whiteciecle"
+        android:padding="@dimen/careimage"
+        android:src="@drawable/search" />
+
+    <LinearLayout
+        android:id="@+id/donation_requests_fragment_ll_filter_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_xxxl"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:layout_marginStart="@dimen/dim_m"
+        android:layout_marginTop="@dimen/dimens_l"
+        android:layout_toStartOf="@id/donation_requests_fragment_iv_search"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dim_s"
+            android:layout_weight="1"
+            android:background="@drawable/fullcirclewhite">
+
+            <Spinner
+                android:id="@+id/donation_requests_fragment_sp_blood_types"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dim_s"
+            android:layout_weight="1"
+            android:background="@drawable/fullcirclewhite">
+
+            <Spinner
+                android:id="@+id/donation_requests_fragment_sp_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/donation_requests_fragment_rl_donations_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/donation_requests_fragment_ll_filter_container"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:layout_marginStart="@dimen/dim_m"
+        android:layout_marginTop="@dimen/dimens_l">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/donation_requests_fragment_tv_no_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/no_results"
+        android:textColor="@color/move"
+        android:textSize="@dimen/txt_size_xxl"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</RelativeLayout>

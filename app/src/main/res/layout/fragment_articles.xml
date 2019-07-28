@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/articles_fragment_rl_sub_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".ui.fragment.articles_requests.ArticlesFragment">
+
+    <LinearLayout
+        android:id="@+id/articles_fragment_ll_filter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_xxxxl"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:layout_marginStart="@dimen/dim_m"
+        android:layout_marginTop="@dimen/dimens_l"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dimens_sss"
+            android:layout_weight="1"
+            android:background="@drawable/halfcircleright">
+
+            <Spinner
+                android:id="@+id/articles_fragment_sp_categories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingEnd="@dimen/dim_m"
+                android:paddingStart="@dimen/dim_m" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dimens_sss"
+            android:layout_weight="2"
+            android:background="@drawable/halfcircleleft"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/articles_fragment_et_keyword"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@null"
+                android:hint="@string/enterKeyword"
+                android:padding="@dimen/dimens_sss"
+                android:textSize="@dimen/txt_size_s"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:id="@+id/articles_fragment_iv_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/dimens_l"
+                android:src="@drawable/search" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/articles_fragment_ll_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/articles_fragment_ll_filter">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/articles_fragment_rv_list_articles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dim_m"
+            android:layout_marginStart="@dimen/dim_m"
+            android:layout_marginTop="@dimen/dimens_l">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/articles_fragment_tv_no_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/no_results"
+        android:textColor="@color/move"
+        android:textSize="@dimen/txt_size_xxl"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</RelativeLayout>

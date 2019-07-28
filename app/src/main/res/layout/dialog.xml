@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/shape_edit_text_bg"
+    android:textAlignment="center">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimens_l"
+
+        android:text="@string/phonemm"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_m" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dim_m"
+        android:layout_marginEnd="@dimen/dim_m"
+        android:layout_marginStart="@dimen/dim_m"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_ok"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/dim_s"
+            android:layout_weight="1"
+            android:background="@drawable/edit_move"
+            android:gravity="center"
+            android:text="@string/yes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_size_m" />
+
+        <Button
+            android:id="@+id/dialog_no"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dim_s"
+            android:layout_weight="1"
+            android:background="@drawable/edit_move"
+            android:gravity="center"
+            android:text="@string/cancell"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_size_m" />
+
+    </LinearLayout>
+
+</RelativeLayout>

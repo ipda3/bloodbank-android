@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    tools:context=".ui.activity.splashCycel.StartUpSlideActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/Start_Up_Slide_ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/Start_Up_Slide_Point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/Start_Up_Slide_Ban_Skip"
+        android:layout_margin="@dimen/dim_s"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/dim_s">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Start_Up_Slide_Point1"
+            android:layout_width="@dimen/dim_m"
+            android:layout_height="@dimen/dim_m"
+            android:layout_margin="@dimen/dim_s"
+            android:background="@drawable/check_circle" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Start_Up_Slide_Point2"
+            android:layout_width="@dimen/dim_m"
+            android:layout_height="@dimen/dim_m"
+            android:layout_margin="@dimen/dim_s"
+            android:background="@drawable/uncheck_circle" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/Start_Up_Slide_Ban_Skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/edit_greydark"
+        android:text="@string/cross"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/txt_size_l" />
+
+</RelativeLayout>
