@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +23,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ipd3.tech.bloodBank.project.R;
 import com.ipd3.tech.bloodBank.project.data.model.donation.donationDetails.DonationData;
+import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class DonationDetailsFragment extends Fragment implements OnMapReadyCallback,
+public class DonationDetailsFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     @BindView(R.id.donation_details_fragment_tv_name)
@@ -65,8 +66,13 @@ public class DonationDetailsFragment extends Fragment implements OnMapReadyCallb
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setUpActivity();
         View view = inflater.inflate(R.layout.fragment_donation_details, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.GONE,View.VISIBLE);
+
         setData();
 
         return view;
@@ -81,13 +87,13 @@ public class DonationDetailsFragment extends Fragment implements OnMapReadyCallb
     @SuppressLint("SetTextI18n")
     private void setData() {
 
-        donationDetailsFragmentTvName.setText("الاسم : " + donationData.getPatientName());
+        donationDetailsFragmentTvName.setText(getString(R.string.name_) + " " + donationData.getPatientName());
         donationDetailsFragmentTvAge.setText("العمر : " + donationData.getPatientAge());
-        donationDetailsFragmentTvBloodType.setText("فصيلة الدم : " + donationData.getBloodType().getName());
-        donationDetailsFragmentTvOrderNumbers.setText("عدد الأكياس المطلوبة : " + donationData.getBagsNum());
-        donationDetailsFragmentTvHospital.setText("المستشفى : " + donationData.getHospitalName());
-        donationDetailsFragmentTvHospitalAddress.setText("عنوان المستشفى : " + donationData.getHospitalAddress());
-        donationDetailsFragmentTvPhoneNumber.setText("رقم الجوال : " + donationData.getPhone());
+        donationDetailsFragmentTvBloodType.setText(getString(R.string.birthdate_) + " " + donationData.getBloodType().getName());
+        donationDetailsFragmentTvOrderNumbers.setText(getString(R.string.counter_order) + donationData.getBagsNum());
+        donationDetailsFragmentTvHospital.setText(getString(R.string.hospital_name) + " " + donationData.getHospitalName());
+        donationDetailsFragmentTvHospitalAddress.setText(getString(R.string.hospital_address) + " " + donationData.getHospitalAddress());
+        donationDetailsFragmentTvPhoneNumber.setText(getString(R.string.phone_) + donationData.getPhone());
         donationDetailsFragmentTvDetailsTxt.setText(donationData.getNotes());
 
         googleApiClient = new GoogleApiClient.Builder(getActivity())
@@ -151,5 +157,11 @@ public class DonationDetailsFragment extends Fragment implements OnMapReadyCallb
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    public void onBack() {
+        setUpHomeActivity();
+        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, navigationActivity.articlesAndDonations);
     }
 }

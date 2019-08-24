@@ -23,6 +23,7 @@ import com.ipd3.tech.bloodBank.project.data.model.publiceData.bloodTypes.BloodTy
 import com.ipd3.tech.bloodBank.project.data.model.publiceData.governorates.Governorates;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationPropertiesFragment extends Fragment {
+public class NotificationPropertiesFragment extends BaseFragment {
 
     @BindView(R.id.notification_properties_fragment_tv_notification_text)
     TextView notificationPropertiesFragmentTvNotificationText;
@@ -69,6 +70,9 @@ public class NotificationPropertiesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notification_properities, container, false);
         unbinder = ButterKnife.bind(this, view);
 
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.VISIBLE, View.GONE);
+
         userData = SharedPreferencesManger.loadUserData(getActivity());
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
 
@@ -87,7 +91,7 @@ public class NotificationPropertiesFragment extends Fragment {
             if (state) {
                 call = apiServices.getNotificationSettings(userData.getApiToken());
             } else {
-                call = apiServices.setNotificationSettings(userData.getApiToken(), GovernAdapter.Ids, bloodsAdapter.Ids);
+                call = apiServices.setNotificationSettings(userData.getApiToken(), GovernAdapter.ids, bloodsAdapter.ids);
             }
 
             call.enqueue(new Callback<NotificationSettings>() {
@@ -165,7 +169,6 @@ public class NotificationPropertiesFragment extends Fragment {
                 if (response.body().getStatus() == 1) {
                     governoratesList.addAll(response.body().getData());
                     notificationPropertiesFragmentRvGovernmentsList.setAdapter(GovernAdapter);
-
                 }
             }
 
@@ -187,6 +190,12 @@ public class NotificationPropertiesFragment extends Fragment {
             HelperMethod.dismissProgressDialog();
             Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBack() {
+        setUpHomeActivity();
+        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, navigationActivity.articlesAndDonations);
     }
 
 }

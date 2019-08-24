@@ -26,7 +26,7 @@ public class NotificationSettingAdapter extends RecyclerView.Adapter<Notificatio
     private List<String> oldBloodTypes = new ArrayList<>();
     private List<GeneralResponseData> bloods = new ArrayList<>();
 
-    public List<Integer> Ids = new ArrayList<>();
+    public List<Integer> ids = new ArrayList<>();
 
     public NotificationSettingAdapter(Context context, Activity activity, List<GeneralResponseData> bloods, List<String> oldBloodTypes) {
         this.context = context;
@@ -58,7 +58,7 @@ public class NotificationSettingAdapter extends RecyclerView.Adapter<Notificatio
             for (int i = 0; i < oldBloodTypes.size(); i++) {
                 if (oldBloodTypes.get(i).equals(String.valueOf(bloods.get(position).getId()))) {
                     holder.notificationSettingAdapterCbSettingCheck.setChecked(true);
-                    Ids.add(bloods.get(position).getId());
+                    ids.add(bloods.get(position).getId());
                     break;
                 }
             }
@@ -78,11 +78,11 @@ public class NotificationSettingAdapter extends RecyclerView.Adapter<Notificatio
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        Ids.add(bloods.get(position).getId());
+                        ids.add(bloods.get(position).getId());
                     } else {
-                        for (int i = 0; i < Ids.size(); i++) {
-                            if (Ids.get(i).equals(bloods.get(position).getId())) {
-                                Ids.remove(i);
+                        for (int i = 0; i < ids.size(); i++) {
+                            if (ids.get(i).equals(bloods.get(position).getId())) {
+                                ids.remove(i);
                             }
                         }
                     }

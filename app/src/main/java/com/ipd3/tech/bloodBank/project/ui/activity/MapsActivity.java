@@ -171,7 +171,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Placing a marker on the touched position
                 mMap.addMarker(markerOptions);
 
-
             }
         });
     }
@@ -248,10 +247,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @OnClick(R.id.BtnMyLocation)
     public void onViewClicked() {
-        getMyLocation();
-    }
-
-    private void getMyLocation() {
         onBackPressed();
     }
+
 }

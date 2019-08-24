@@ -27,8 +27,7 @@ import com.ipd3.tech.bloodBank.project.data.model.publiceData.cities.Cities;
 import com.ipd3.tech.bloodBank.project.data.model.publiceData.governorates.Governorates;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
-import com.ipd3.tech.bloodBank.project.ui.activity.BaseActivity;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.ui.activity.homeCycle.HomeNavigationActivity;
 import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import java.text.DecimalFormat;
@@ -102,8 +101,13 @@ public class EditProfileFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.VISIBLE, View.GONE);
+
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
         userData = SharedPreferencesManger.loadUserData(getActivity());
+
         if (InternetState.isConnected(getActivity())) {
 
             editProfileFragmentEtName.setHint(userData.getName());
@@ -118,7 +122,6 @@ public class EditProfileFragment extends BaseFragment {
             HelperMethod.dismissProgressDialog();
             Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
         }
-
 
         Bid = new DateTxt("01", "01", "1970", "01-01-1970");
 
@@ -198,7 +201,7 @@ public class EditProfileFragment extends BaseFragment {
                 try {
                     if (response.body().getStatus() == 1) {
 
-                        GovernoratesTxt.add("اختر المحافظه");
+                        GovernoratesTxt.add(getString(R.string.select_govarnment));
                         GovernoratesId.add(0);
                         int pos = 0;
 
@@ -259,7 +262,7 @@ public class EditProfileFragment extends BaseFragment {
                         citiesTxt = new ArrayList<>();
                         citiesId = new ArrayList<>();
 
-                        citiesTxt.add("اختر المدينة");
+                        citiesTxt.add(getString(R.string.city_name));
                         citiesId.add(0);
                         int pos = 0;
 
@@ -408,7 +411,7 @@ public class EditProfileFragment extends BaseFragment {
                         userData.setApiToken(response.body().getData().getApiToken());
                         SharedPreferencesManger.saveUserData(getActivity(), response.body().getData().getClient());
                         Toast.makeText(getActivity(), "تم تعديل البيانات", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                        Intent intent = new Intent(getActivity(), HomeNavigationActivity.class);
                         startActivity(intent);
 
                     } else {
@@ -428,6 +431,12 @@ public class EditProfileFragment extends BaseFragment {
             HelperMethod.dismissProgressDialog();
             Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBack() {
+        setUpHomeActivity();
+        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, navigationActivity.articlesAndDonations);
     }
 
 }

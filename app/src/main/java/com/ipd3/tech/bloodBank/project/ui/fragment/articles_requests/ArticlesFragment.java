@@ -29,6 +29,7 @@ import com.ipd3.tech.bloodBank.project.data.model.publiceData.categeories.Catege
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.OnEndLess;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.dismissProgres
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ArticlesFragment extends Fragment {
+public class ArticlesFragment extends BaseFragment {
 
     @BindView(R.id.articles_fragment_rv_list_articles)
     RecyclerView articlesFragmentRvListArticles;
@@ -86,6 +87,7 @@ public class ArticlesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setUpActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_articles, container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -143,7 +145,7 @@ public class ArticlesFragment extends Fragment {
             public void onResponse(Call<Categeories> call, Response<Categeories> response) {
                 if (response.body().getStatus() == 1) {
 
-                    CategorisesTxt.add("جميع الفئات");
+                    CategorisesTxt.add(getString(R.string.select_categories));
                     CategoriesId.add(0);
 
                     for (int i = 0; i < response.body().getData().size(); i++) {

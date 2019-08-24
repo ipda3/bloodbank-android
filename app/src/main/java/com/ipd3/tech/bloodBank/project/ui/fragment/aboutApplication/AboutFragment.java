@@ -48,6 +48,7 @@ public class AboutFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setUpActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about, container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -56,6 +57,7 @@ public class AboutFragment extends BaseFragment {
         userData = SharedPreferencesManger.loadUserData(getActivity());
 
         setUpHomeActivity();
+        navigationActivity.changeUi(View.VISIBLE,View.GONE);
 
         getAbout();
 
@@ -90,7 +92,6 @@ public class AboutFragment extends BaseFragment {
             customToast(getActivity(), getResources().getString(R.string.offline));
         }
     }
-
 
     @Override
     public void onBack() {

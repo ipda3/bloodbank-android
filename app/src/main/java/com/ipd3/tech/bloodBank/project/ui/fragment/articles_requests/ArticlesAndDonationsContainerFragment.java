@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.ipd3.tech.bloodBank.project.R;
-import com.ipd3.tech.bloodBank.project.adapter.ViewPagerAdapter;
+import com.ipd3.tech.bloodBank.project.adapter.ViewPagerWithFragmentAdapter;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.donation.CreateDonationRequestsFragment;
 
 import butterknife.BindView;
@@ -23,7 +24,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ArticlesAndDonationsFragment extends Fragment {
+public class ArticlesAndDonationsContainerFragment extends BaseFragment {
 
     @BindView(R.id.ArticlesAndRequests_Frame)
     FrameLayout ArticlesAndRequestsFrame;
@@ -35,7 +36,7 @@ public class ArticlesAndDonationsFragment extends Fragment {
     FloatingActionButton ArticlesAndRequestsFloatingButton;
     Unbinder unbinder;
 
-    public ArticlesAndDonationsFragment() {
+    public ArticlesAndDonationsContainerFragment() {
 
         // Required empty public constructor
     }
@@ -44,17 +45,21 @@ public class ArticlesAndDonationsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setUpActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_articles_and_donations, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        ViewPagerAdapter vpadapter = new ViewPagerAdapter(getChildFragmentManager());
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.VISIBLE,View.GONE);
 
-        ArticlesFragment articals_fragment = new ArticlesFragment();
-        com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests.DonationRequestsFragment dontaion_fragment = new com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests.DonationRequestsFragment();
+        ViewPagerWithFragmentAdapter vpadapter = new ViewPagerWithFragmentAdapter(getChildFragmentManager());
 
-        vpadapter.addPager(articals_fragment, "المقالات");
-        vpadapter.addPager(dontaion_fragment, "طلبات التبرع ");
+        ArticlesFragment articlesFragment = new ArticlesFragment();
+        DonationRequestsFragment donationRequestsFragment = new DonationRequestsFragment();
+
+        vpadapter.addPager(articlesFragment, getString(R.string.posts));
+        vpadapter.addPager(donationRequestsFragment, getString(R.string.donations));
 
         Viewpager.setAdapter(vpadapter);
         TabLayout.setupWithViewPager(Viewpager);
@@ -70,7 +75,7 @@ public class ArticlesAndDonationsFragment extends Fragment {
 
     @OnClick(R.id.ArticlesAndRequests_FloatingButton)
     public void onViewClicked() {
-        CreateDonationRequestsFragment requestFragment = new CreateDonationRequestsFragment();
-        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, requestFragment);
+        CreateDonationRequestsFragment createDonationRequestsFragment = new CreateDonationRequestsFragment();
+        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, createDonationRequestsFragment);
     }
 }

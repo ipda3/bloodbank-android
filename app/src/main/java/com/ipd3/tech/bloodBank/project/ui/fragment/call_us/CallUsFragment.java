@@ -2,7 +2,6 @@ package com.ipd3.tech.bloodBank.project.ui.fragment.call_us;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,7 @@ import com.ipd3.tech.bloodBank.project.data.model.contactUs.ContactUs;
 import com.ipd3.tech.bloodBank.project.data.model.setting.Setting;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +32,7 @@ import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.dismissProgres
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.showProgressDialog;
 
 
-public class CallUsFragment extends Fragment {
+public class CallUsFragment extends BaseFragment {
 
     @BindView(R.id.fragment_call_us_tv_phone)
     TextView fragmentCallUsTvPhone;
@@ -50,13 +50,16 @@ public class CallUsFragment extends Fragment {
     public CallUsFragment() {
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setUpActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_call_us, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.VISIBLE,View.GONE);
+
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
         userData = SharedPreferencesManger.loadUserData(getActivity());
 
@@ -116,25 +119,15 @@ public class CallUsFragment extends Fragment {
             case R.id.fragment_call_us_iv_social_facebook:
                 break;
             case R.id.call_us_fragment_btn_send:
-                if (InternetState.isConnected(getActivity())) {
-
-                    contactUs();
-
-                } else {
-                    Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
-                }
+                onContactUs();
                 break;
         }
     }
 
-    private void contactUs() {
+    private void onContactUs() {
         String title = callUsFragmentEtMessageAddress.getText().toString().trim();
         String message = callUsFragmentEtMessageText.getText().toString().trim();
-        onContactUs(title, message);
 
-    }
-
-    private void onContactUs(String title, String message) {
         if (InternetState.isConnected(getActivity())) {
             apiServices.getContactUs(title, message, userData.getApiToken()).enqueue(new Callback<ContactUs>() {
                 @Override
@@ -166,6 +159,12 @@ public class CallUsFragment extends Fragment {
             Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onBack() {
+        setUpHomeActivity();
+        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, navigationActivity.articlesAndDonations);
     }
 
 }

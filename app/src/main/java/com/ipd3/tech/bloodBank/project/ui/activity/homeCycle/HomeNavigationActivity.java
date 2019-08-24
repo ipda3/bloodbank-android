@@ -1,4 +1,4 @@
-package com.ipd3.tech.bloodBank.project.ui.activity.Navigation;
+package com.ipd3.tech.bloodBank.project.ui.activity.homeCycle;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -24,9 +24,8 @@ import com.ipd3.tech.bloodBank.project.data.model.notifiction.notificationsCount
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.ViewDialog;
 import com.ipd3.tech.bloodBank.project.ui.activity.BaseActivity;
-import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.aboutApplication.AboutFragment;
-import com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests.ArticlesAndDonationsFragment;
+import com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests.ArticlesAndDonationsContainerFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests.ArticlesFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.call_us.CallUsFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.notification.NotificationFragment;
@@ -42,7 +41,7 @@ import retrofit2.Response;
 
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.registerNotificationToken;
 
-public class NavigationActivity extends BaseActivity
+public class HomeNavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.menu)
@@ -71,8 +70,7 @@ public class NavigationActivity extends BaseActivity
     private UserData userData;
     public DonationData donationData;
 
-    public BaseFragment baseFragment;
-    public ArticlesAndDonationsFragment articlesAndDonations;
+    public ArticlesAndDonationsContainerFragment articlesAndDonations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +78,7 @@ public class NavigationActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
+
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
         userData = SharedPreferencesManger.loadUserData(this);
 
@@ -90,12 +89,8 @@ public class NavigationActivity extends BaseActivity
 
         }
 
-        HomeDetales1 = HomeDetales;
-        if (savedInstanceState == null) {
-            articlesAndDonations = new ArticlesAndDonationsFragment();
-            HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, articlesAndDonations);
-
-        }
+        articlesAndDonations = new ArticlesAndDonationsContainerFragment();
+        HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, articlesAndDonations);
 
         ImageView imageView = (ImageView) findViewById(R.id.menu);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +98,6 @@ public class NavigationActivity extends BaseActivity
             public void onClick(View view) {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.openDrawer(GravityCompat.START);
-
             }
         });
 
@@ -202,7 +196,7 @@ public class NavigationActivity extends BaseActivity
             back.setVisibility(View.GONE);
 
         } else if (id == R.id.main) {
-            ArticlesAndDonationsFragment articlesAndDonations = new ArticlesAndDonationsFragment();
+            ArticlesAndDonationsContainerFragment articlesAndDonations = new ArticlesAndDonationsContainerFragment();
             HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, articlesAndDonations);
             AppBarTextViewChange.setText("");
 
@@ -237,8 +231,8 @@ public class NavigationActivity extends BaseActivity
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.back:
-                onBackPressed();
 
+                onBackPressed();
 
                 break;
             case R.id.notification:
@@ -257,21 +251,27 @@ public class NavigationActivity extends BaseActivity
     @Override
     public void onBackPressed() {
 
-        ArticlesAndDonationsFragment articlesAndDonations = new ArticlesAndDonationsFragment();
-        HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, articlesAndDonations);
-        notification.setVisibility(View.VISIBLE);
-        notificationCount.setVisibility(View.VISIBLE);
-        back.setVisibility(View.GONE);
-        AppBarTextViewChange.setVisibility(View.GONE);
+//        ArticlesAndDonationsContainerFragment articlesAndDonations = new ArticlesAndDonationsContainerFragment();
+//        HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, articlesAndDonations);
+//        notification.setVisibility(View.VISIBLE);
+//        notificationCount.setVisibility(View.VISIBLE);
+//        back.setVisibility(View.GONE);
+//        AppBarTextViewChange.setVisibility(View.GONE);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+
+        if (drawer.isDrawerOpen(drawer)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            baseFragment.onBack();
+        }
 
     }
 
-    public void changeUi() {
-        notification.setVisibility(View.GONE);
-        notificationCount.setVisibility(View.GONE);
-        back.setVisibility(View.VISIBLE);
+    public void changeUi(int Visibility, int unVisibility) {
+        notification.setVisibility(Visibility);
+        notificationCount.setVisibility(Visibility);
+        back.setVisibility(unVisibility);
+        menu.setVisibility(Visibility);
     }
 
     @SuppressLint("SetTextI18n")

@@ -2,7 +2,6 @@ package com.ipd3.tech.bloodBank.project.ui.fragment.userCycle.forgetPassword;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
 import com.ipd3.tech.bloodBank.project.data.model.auth.newPassword.NewPassword;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.ui.activity.homeCycle.HomeNavigationActivity;
 import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.userCycle.LoginFragment;
 import com.jaeger.library.StatusBarUtil;
@@ -124,7 +123,7 @@ public class ChangePasswordFragment extends BaseFragment {
                         if (response.body().getStatus() == 1) {
                             SharedPreferencesManger.saveUserData(getActivity(), userData);
 
-                            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                            Intent intent = new Intent(getActivity(), HomeNavigationActivity.class);
                             startActivity(intent);
 
                         }

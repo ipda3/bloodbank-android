@@ -20,8 +20,10 @@ import com.ipd3.tech.bloodBank.project.data.local.SharedPreferencesManger;
 import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
 import com.ipd3.tech.bloodBank.project.data.model.notifiction.notificationList.NotificationData;
 import com.ipd3.tech.bloodBank.project.data.model.notifiction.notificationList.NotificationsList;
+import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.OnEndLess;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.dismissProgres
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NotificationFragment extends Fragment {
+public class NotificationFragment extends BaseFragment {
 
 
     @BindView(R.id.notification_fragment_rv_notification_list)
@@ -63,11 +65,14 @@ public class NotificationFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setUpActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notification_push, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.GONE,View.VISIBLE);
 
         userData = SharedPreferencesManger.loadUserData(getActivity());
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
@@ -153,5 +158,11 @@ public class NotificationFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onBack() {
+        setUpHomeActivity();
+        HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.Content_Frame_Replace, navigationActivity.articlesAndDonations);
     }
 }

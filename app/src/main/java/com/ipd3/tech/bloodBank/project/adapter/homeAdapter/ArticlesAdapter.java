@@ -14,10 +14,8 @@ import android.widget.Toast;
 import com.ipd3.tech.bloodBank.project.R;
 import com.ipd3.tech.bloodBank.project.data.api.ApiServices;
 import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
-import com.ipd3.tech.bloodBank.project.data.model.post.posts.PostsData;
 import com.ipd3.tech.bloodBank.project.data.model.post.postToggleFavourite.PostToggleFavourite;
-import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.data.model.post.posts.PostsData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,8 +101,6 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
                         public void onResponse(Call<PostToggleFavourite> call, Response<PostToggleFavourite> response) {
                             try {
                                 if (response.body().getStatus() == 1) {
-
-                                } else {
                                     PostsData.get(position).setIsFavourite(!PostsData.get(position).getIsFavourite());
 
                                     if (PostsData.get(position).getIsFavourite()) {
@@ -113,6 +109,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
                                         holder.articlesAdapterIvFavourites.setImageResource(R.drawable.lightheart);
                                     }
                                 }
+
                             } catch (Exception e) {
 
                             }
@@ -144,7 +141,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
 
-//                    NavigationActivity navigationActivity = (NavigationActivity) activity;
+//                    HomeNavigationActivity navigationActivity = (HomeNavigationActivity) activity;
 //                    navigationActivity.changeUi();
 //                    CaringFragment caringFragment = new CaringFragment();
 //                    caringFragment.postsData = PostsData.get(position);

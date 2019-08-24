@@ -40,7 +40,7 @@ public class SlideAdapter extends PagerAdapter {
 
             View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
 
-            ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            ImageView imageView = itemView.findViewById(R.id.imageView);
             imageView.setImageResource(GalImages[position]);
 
             container.addView(itemView);

@@ -15,7 +15,6 @@ import com.ipd3.tech.bloodBank.project.data.api.RetrofitClient;
 import com.ipd3.tech.bloodBank.project.data.model.auth.resetpassword.ResetPassword;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
-import com.ipd3.tech.bloodBank.project.ui.activity.BaseActivity;
 import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 import com.jaeger.library.StatusBarUtil;
 
@@ -104,7 +103,7 @@ public class ForgetPasswordFragment extends BaseFragment {
                     try {
                         if (response.body().getStatus() == 1) {
 
-                            customToast(getActivity(), "برجاء فحص بريدك الإلكترونى");
+                            customToast(getActivity(), getString(R.string.check_your_email));
                             ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
                             changePasswordFragment.phone = Phone;
                             HelperMethod.replaceFragment(getFragmentManager(), R.id.relat2, changePasswordFragment);

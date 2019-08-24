@@ -52,6 +52,13 @@
     <string name="birthdate">تاريخ الميلاد</string>
     <string name="bloodtype">فصيلة الدم</string>
     <string name="lastdate">اخر تاريخ للتبرع</string>
+
+    <string name="name_">: الإسم</string>
+    <string name="email_">: البريد الإلكترونى</string>
+    <string name="birthdate_">: تاريخ الميلاد</string>
+    <string name="bloodtype_">: فصيلة الدم</string>
+    <string name="lastdate_">: اخر تاريخ للتبرع</string>
+
     <string name="reg">تسجيل</string>
     <string name="title_activity_articles">ArticlesActivity</string>
     <string name="navigation_drawer_open">Open navigationActivity drawer</string>
@@ -154,6 +161,22 @@
     <string name="select_city">من فضلك اختر المدينة</string>
     <string name="select_blood_bank">من فضلك اختر فصيلة الدم</string>
     <string name="failed_required">الحقل مطلوب</string>
+    <string name="select_governorates">اختر المحافظه</string>
+    <string name="date_btd_title">اختر تاريخ ميلادك</string>
+    <string name="date_last_title">اختر اخر تاريخ للتبرع</string>
+    <string name="check_your_email">برجاء فحص بريدك الإلكترونى</string>
+    <string name="register">جارى تسجيل حسابك ...</string>
+    <string name="patient_name">اسم الحالة:</string>
+    <string name="hospital_name">المستشفي :</string>
+    <string name="hospital_address">عنوان المستشفي :</string>
+    <string name="city_name">المدينة:</string>
+    <string name="posts">المقالات</string>
+    <string name="donations">طلبات التبرع</string>
+    <string name="select_govarnment">اختر المحافظه</string>
+    <string name="select_blood">اختر فصيلة الدم</string>
+    <string name="select_categories">جميع الفئات</string>
+    <string name="phone_">رقم الجوال :</string>
+    <string name="counter_order">عدد الأكياس المطلوبة :</string>
 
 
 </resources>

@@ -16,7 +16,7 @@ import com.ipd3.tech.bloodBank.project.data.model.auth.login.Login;
 import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.ui.activity.homeCycle.HomeNavigationActivity;
 import com.ipd3.tech.bloodBank.project.ui.activity.splashCycel.StartUpSlideActivity;
 import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 import com.ipd3.tech.bloodBank.project.ui.fragment.userCycle.forgetPassword.ForgetPasswordFragment;
@@ -80,32 +80,21 @@ public class LoginFragment extends BaseFragment {
 
         switch (view.getId()) {
             case R.id.login_fragment_tv_forget_password:
-                if (InternetState.isConnected(getActivity())) {
-                    ForgetPasswordFragment forgetPasswordFragment = new ForgetPasswordFragment();
-                    HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.frame, forgetPasswordFragment);
 
-                } else {
-                    customToast(getActivity(), getResources().getString(R.string.offline));
-                }
+                ForgetPasswordFragment forgetPasswordFragment = new ForgetPasswordFragment();
+                HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.frame, forgetPasswordFragment);
 
                 break;
             case R.id.login_fragment_btn_login:
-                if (InternetState.isConnected(getActivity())) {
-                    userLogin();
 
-                } else {
-                    customToast(getActivity(), getResources().getString(R.string.offline));
-                }
+                userLogin();
+
                 break;
             case R.id.login_fragment_btn_register:
 
-                if (InternetState.isConnected(getActivity())) {
-                    RegisterFragment register = new RegisterFragment();
-                    HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.frame, register);
+                RegisterFragment register = new RegisterFragment();
+                HelperMethod.replaceFragment(getActivity().getSupportFragmentManager(), R.id.frame, register);
 
-                } else {
-                    customToast(getActivity(), getResources().getString(R.string.offline));
-                }
                 break;
         }
     }
@@ -152,7 +141,7 @@ public class LoginFragment extends BaseFragment {
                             SharedPreferencesManger.saveUserData(getActivity(), userData);
                             SharedPreferencesManger.SaveData(getActivity(), SharedPreferencesManger.USER_PASSWORD, Password);
                             SharedPreferencesManger.SaveData(getActivity(), SharedPreferencesManger.REMEMBER, loginFragmentCbRemember.isChecked());
-                            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                            Intent intent = new Intent(getActivity(), HomeNavigationActivity.class);
                             startActivity(intent);
                             getActivity().finish();
                         } else {

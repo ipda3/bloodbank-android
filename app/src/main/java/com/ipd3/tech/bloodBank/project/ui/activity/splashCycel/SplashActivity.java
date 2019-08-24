@@ -17,7 +17,7 @@ import com.ipd3.tech.bloodBank.project.data.local.SharedPreferencesManger;
 import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.ui.activity.homeCycle.HomeNavigationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,37 +39,39 @@ public class SplashActivity extends AppCompatActivity {
         HelperMethod.changeLang(this, "ar");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
         ButterKnife.bind(this);
+
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
         userData = SharedPreferencesManger.loadUserData(this);
 
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate);
+
         SplashIvLogo.setVisibility(View.VISIBLE);
         SplashIvLogo.startAnimation(animation);
-        new Handler().postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
 
-                        if (InternetState.isConnected(SplashActivity.this)) {
-                            Intent i;
-                            if (SharedPreferencesManger.LoadBoolean(SplashActivity.this, SharedPreferencesManger.REMEMBER) && !SharedPreferencesManger.LoadData(SplashActivity.this, SharedPreferencesManger.USER_API_TOKEN).isEmpty()) {
-                                i = new Intent(SplashActivity.this, NavigationActivity.class);
-                            } else {
-                                //Call
-                                removeNotificationToken(apiServices, userData);
-                                i = new Intent(SplashActivity.this, StartUpSlideActivity.class);
-                            }
-                            startActivity(i);
-                            // close this activity
-                            finish();
-                        } else {
-                            SplashTvIsConnected.setVisibility(View.VISIBLE);
-                        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if (InternetState.isConnected(SplashActivity.this)) {
+                    Intent i;
+                    if (SharedPreferencesManger.LoadBoolean(SplashActivity.this, SharedPreferencesManger.REMEMBER)
+                            && !SharedPreferencesManger.LoadData(SplashActivity.this, SharedPreferencesManger.USER_API_TOKEN).isEmpty()) {
+                        i = new Intent(SplashActivity.this, HomeNavigationActivity.class);
+                    } else {
+                        //Call
+                        removeNotificationToken(apiServices, userData);
+                        i = new Intent(SplashActivity.this, StartUpSlideActivity.class);
                     }
-                },
-                SPLASH_TIME_OUT
-        );
+                    startActivity(i);
+                    // close this activity
+                    finish();
+                } else {
+                    SplashTvIsConnected.setVisibility(View.VISIBLE);
+                }
+            }
+        }, SPLASH_TIME_OUT);
     }
 }
 

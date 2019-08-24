@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ipd3.tech.bloodBank.project.R;
 import com.ipd3.tech.bloodBank.project.data.api.ApiServices;
@@ -26,7 +25,7 @@ import com.ipd3.tech.bloodBank.project.data.model.publiceData.cities.Cities;
 import com.ipd3.tech.bloodBank.project.data.model.publiceData.governorates.Governorates;
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.ui.activity.homeCycle.HomeNavigationActivity;
 import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 import com.jaeger.library.StatusBarUtil;
 
@@ -45,6 +44,7 @@ import retrofit2.Response;
 
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.customToast;
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.disappearKeypad;
+import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.showProgressDialog;
 
 
 public class RegisterFragment extends BaseFragment {
@@ -130,7 +130,7 @@ public class RegisterFragment extends BaseFragment {
                 try {
                     if (response.body().getStatus() == 1) {
 
-                        BloodTypesTxt.add("اختر فصيلة الدم");
+                        BloodTypesTxt.add(getString(R.string.select_blood_bank));
                         BloodTypesId.add(0);
 
                         for (int i = 0; i < response.body().getData().size(); i++) {
@@ -142,21 +142,6 @@ public class RegisterFragment extends BaseFragment {
                                 R.layout.spinner_item, BloodTypesTxt);
 
                         registerFragmentSpBloodType.setAdapter(adapter);
-
-                        registerFragmentSpBloodType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                if (i != 0) {
-                                    blood_type_id = BloodTypesId.get(i);
-                                }
-
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView) {
-
-                            }
-                        });
 
                     }
 
@@ -170,8 +155,6 @@ public class RegisterFragment extends BaseFragment {
 
             }
         });
-
-
     }
 
     private void getGovernorates() {
@@ -181,7 +164,7 @@ public class RegisterFragment extends BaseFragment {
                 try {
                     if (response.body().getStatus() == 1) {
 
-                        GovernoratesTxt.add("اختر المحافظه");
+                        GovernoratesTxt.add(getString(R.string.select_governorates));
                         GovernoratesId.add(0);
 
                         for (int i = 0; i < response.body().getData().size(); i++) {
@@ -234,7 +217,7 @@ public class RegisterFragment extends BaseFragment {
                         citiesTxt = new ArrayList<>();
                         citiesId = new ArrayList<>();
 
-                        citiesTxt.add("اختر المدينة");
+                        citiesTxt.add(getString(R.string.select_city));
                         citiesId.add(0);
 
                         for (int i = 0; i < response.body().getData().size(); i++) {
@@ -246,21 +229,6 @@ public class RegisterFragment extends BaseFragment {
                                 R.layout.spinner_item, citiesTxt);
 
                         registerFragmentSpCity.setAdapter(adapter);
-
-                        registerFragmentSpCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                if (i != 0) {
-                                    city_id = citiesId.get(i);
-                                }
-
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> adapterView) {
-
-                            }
-                        });
 
                     } else {
 
@@ -291,18 +259,19 @@ public class RegisterFragment extends BaseFragment {
 
         switch (view.getId()) {
             case R.id.register_fragment_tv_birthday_data:
-                HelperMethod.showCalender(getActivity(), "اختر تاريخ ميلادك", registerFragmentTvBirthdayData, Bid);
+
+                HelperMethod.showCalender(getActivity(), getString(R.string.date_btd_title), registerFragmentTvBirthdayData, Bid);
 
                 break;
             case R.id.register_fragment_tv_last_dontition_data:
-                HelperMethod.showCalender(getActivity(), "اختر اخر تاريخ للتبرع", registerFragmentTvLastDontitionData, donationData);
+
+                HelperMethod.showCalender(getActivity(), getString(R.string.date_last_title), registerFragmentTvLastDontitionData, donationData);
+
                 break;
             case R.id.register_fragment_btn_register:
-                if (InternetState.isConnected(getActivity())) {
-                    userRegister();
-                } else {
-                    Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
-                }
+
+                userRegister();
+
                 break;
         }
     }
@@ -316,6 +285,9 @@ public class RegisterFragment extends BaseFragment {
         String donation_last_date = registerFragmentTvLastDontitionData.getText().toString().trim();
         String password = registerFragmentEtPassword.getText().toString().trim();
         String password_confirmation = registerFragmentEtConfirmationPassword.getText().toString().trim();
+
+        blood_type_id = BloodTypesId.get(registerFragmentSpBloodType.getSelectedItemPosition());
+        city_id = BloodTypesId.get(registerFragmentSpCity.getSelectedItemPosition());
 
         if (name.isEmpty()) {
             registerFragmentEtName.requestFocus();
@@ -376,6 +348,7 @@ public class RegisterFragment extends BaseFragment {
         }
 
         if (InternetState.isConnected(getActivity())) {
+            showProgressDialog(getActivity(), getString(R.string.register));
             apiServices.getRegister(name, email, birth_date, city_id, phone, donation_last_date, password, password_confirmation,
                     blood_type_id).enqueue(new Callback<Login>() {
                 @Override
@@ -390,7 +363,7 @@ public class RegisterFragment extends BaseFragment {
 
                             customToast(getActivity(), "تم انشاء الحساب");
 
-                            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                            Intent intent = new Intent(getActivity(), HomeNavigationActivity.class);
                             startActivity(intent);
                             getActivity().finish();
 

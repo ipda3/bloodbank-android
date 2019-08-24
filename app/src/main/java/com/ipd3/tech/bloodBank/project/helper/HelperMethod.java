@@ -33,7 +33,7 @@ import com.ipd3.tech.bloodBank.project.data.model.DateTxt;
 import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
 import com.ipd3.tech.bloodBank.project.data.model.donation.donationDetails.DonationDetails;
 import com.ipd3.tech.bloodBank.project.data.model.publiceData.generalResponse.GeneralResponse;
-import com.ipd3.tech.bloodBank.project.ui.activity.Navigation.NavigationActivity;
+import com.ipd3.tech.bloodBank.project.ui.activity.homeCycle.HomeNavigationActivity;
 import com.ipd3.tech.bloodBank.project.ui.fragment.donation.DonationDetailsFragment;
 
 import java.text.DecimalFormat;
@@ -151,7 +151,7 @@ public class HelperMethod {
             public void onResponse(Call<DonationDetails> call, Response<DonationDetails> response) {
                 try {
                     if (response.body().getStatus() == 1) {
-                        NavigationActivity navigationActivity = (NavigationActivity) activity;
+                        HomeNavigationActivity navigationActivity = (HomeNavigationActivity) activity;
                         navigationActivity.setCount(false);
                         navigationActivity.donationData = response.body().getData();
                         navigationActivity.changeUiDonation();

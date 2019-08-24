@@ -68,14 +68,13 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
         try {
 
             holder.DonationAdapterTvBloodType.setText(donationData.get(position).getBloodType().getName());
-            holder.DonationAdapterTvPatientName.setText("اسم الحالة:" + donationData.get(position).getPatientName());
-            holder.DonationAdapterTvHospitalName.setText("مستشفى :" + donationData.get(position).getHospitalName());
-            holder.DonationAdapterTvCityName.setText("المدينة:" + donationData.get(position).getCity().getName());
+            holder.DonationAdapterTvPatientName.setText(context.getString(R.string.patient_name) + " " + donationData.get(position).getPatientName());
+            holder.DonationAdapterTvHospitalName.setText(context.getString(R.string.hospital_name) + " " + donationData.get(position).getHospitalName());
+            holder.DonationAdapterTvCityName.setText(context.getString(R.string.city_name) + " " + donationData.get(position).getCity().getName());
 
         } catch (Exception e) {
 
         }
-
     }
 
     private void setAction(ViewHolder holder, int position) {
@@ -95,13 +94,7 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
                     String number = "tel:" + donationData.get(position).getPhone();
                     Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse(number));
                     if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
+
                         return;
                     }
                     context.startActivity(callIntent);

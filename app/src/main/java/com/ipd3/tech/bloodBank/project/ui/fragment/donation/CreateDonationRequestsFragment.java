@@ -25,6 +25,7 @@ import com.ipd3.tech.bloodBank.project.data.model.publiceData.governorates.Gover
 import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
 import com.ipd3.tech.bloodBank.project.ui.activity.MapsActivity;
+import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ import static com.ipd3.tech.bloodBank.project.ui.activity.MapsActivity.longitude
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateDonationRequestsFragment extends Fragment {
+public class CreateDonationRequestsFragment extends BaseFragment {
 
 
     @BindView(R.id.create_donation_requests_fragment_et_name)
@@ -91,15 +92,22 @@ public class CreateDonationRequestsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setUpActivity();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_donation_requests, container, false);
         unbinder = ButterKnife.bind(this, view);
+
+        setUpHomeActivity();
+        navigationActivity.changeUi(View.GONE,View.VISIBLE);
+
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
         userData = SharedPreferencesManger.loadUserData(getActivity());
-        MapsActivity mapsActivity = new MapsActivity();
+
         getGovernorates();
         getBloodTypes();
+
         createDonationRequestsFragmentEtHospitalAddress.setText("");
+
         return view;
 
     }
@@ -111,7 +119,7 @@ public class CreateDonationRequestsFragment extends Fragment {
                 try {
                     if (response.body().getStatus() == 1) {
 
-                        GovernoratesTxt.add("اختر المحافظه");
+                        GovernoratesTxt.add(getString(R.string.select_govarnment));
                         GovernoratesId.add(0);
 
                         for (int i = 0; i < response.body().getData().size(); i++) {
@@ -162,7 +170,7 @@ public class CreateDonationRequestsFragment extends Fragment {
                     if (response.body().getStatus() == 1) {
                         citiesTxt = new ArrayList<>();
                         citiesId = new ArrayList<>();
-                        citiesTxt.add("اختر المدينة");
+                        citiesTxt.add(getString(R.string.select_city));
                         citiesId.add(0);
 
                         for (int i = 0; i < response.body().getData().size(); i++) {
@@ -211,7 +219,7 @@ public class CreateDonationRequestsFragment extends Fragment {
             public void onResponse(Call<BloodTypes> call, Response<BloodTypes> response) {
                 if (response.body().getStatus() == 1) {
 
-                    BloodTypesTxt.add("اختر فصيلة الدم");
+                    BloodTypesTxt.add(getString(R.string.select_blood));
                     BloodTypesId.add(0);
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
@@ -261,25 +269,12 @@ public class CreateDonationRequestsFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.create_donation_requests_fragment_btn_create_request:
-                if (InternetState.isConnected(getActivity())) {
-
-                    sendRequest();
-
-                } else {
-                    Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
-                }
+                sendRequest();
                 break;
             case R.id.create_donation_requests_fragment_Iv_open_map:
-                if (InternetState.isConnected(getActivity())) {
-                    HelperMethod.showProgressDialog(getActivity(), getString(R.string.waiit));
 
-                    Intent intent = new Intent(getActivity(), MapsActivity.class);
-                    startActivity(intent);
-
-                } else {
-                    dismissProgressDialog();
-                    Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent);
 
                 break;
             case R.id.create_donation_requests_fragment_rl_sub_view:
@@ -287,10 +282,6 @@ public class CreateDonationRequestsFragment extends Fragment {
                 break;
 
         }
-    }
-
-    public void setHosName(String hospital_name) {
-        createDonationRequestsFragmentEtHospitalName.setText(hospital_name);
     }
 
     private void sendRequest() {
@@ -308,6 +299,7 @@ public class CreateDonationRequestsFragment extends Fragment {
         String phone = createDonationRequestsFragmentEtPhone.getText().toString().trim();
         String notes = createDonationRequestsFragmentEtNotes.getText().toString().trim();
         String hospitalAddress = createDonationRequestsFragmentEtHospitalAddress.getText().toString().trim();
+
         if (hospitalAddress.isEmpty()) {
             createDonationRequestsFragmentEtHospitalAddress.setText(hospital_address);
             createDonationRequestsFragmentEtHospitalAddress.requestFocus();
@@ -381,7 +373,6 @@ public class CreateDonationRequestsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         createDonationRequestsFragmentEtHospitalAddress.setText(hospital_address);
-        hospital_address = "";
     }
 
 }
