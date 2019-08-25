@@ -143,7 +143,6 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/dim_m"
                     android:layout_weight="1"
                     android:background="@drawable/shape_edit_text_bg">
 
@@ -155,9 +154,12 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/register_fragment_rl_spinner_city_container"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dim_m"
+                    android:visibility="gone"
                     android:background="@drawable/shape_edit_text_bg">
 
                     <Spinner

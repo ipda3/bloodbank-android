@@ -25,6 +25,14 @@ public class GeneralResponseData {
     @Expose
     private GeneralResponseData governorate;
 
+    public GeneralResponseData() {
+    }
+
+    public GeneralResponseData(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

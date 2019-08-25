@@ -33,9 +33,8 @@
             android:textColor="@color/black"
             android:textSize="@dimen/txt_size_l" />
 
-
         <ImageView
-            android:id="@+id/notification"
+            android:id="@+id/home_navigation_activity_iv_notification"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_alignParentEnd="true"
@@ -45,20 +44,20 @@
             android:src="@drawable/noti" />
 
         <TextView
-            android:id="@+id/notificationCount"
+            android:id="@+id/home_navigation_activity_tv_notificationCount"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/careimage"
             android:layout_marginTop="@dimen/dim_m"
             android:background="@drawable/redcircle"
-            android:padding="@dimen/dim_s"
             android:gravity="center"
+            android:padding="@dimen/dim_s"
             android:textColor="@color/white"
             android:textSize="@dimen/txt_size_sss" />
 
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/home_navigation_activity_iv_back"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
@@ -66,10 +65,9 @@
             android:layout_marginEnd="@dimen/dim_m"
             android:src="@drawable/back"
             android:visibility="gone" />
+
     </RelativeLayout>
 
-
     <include layout="@layout/content_navigation" />
-
 
 </LinearLayout>

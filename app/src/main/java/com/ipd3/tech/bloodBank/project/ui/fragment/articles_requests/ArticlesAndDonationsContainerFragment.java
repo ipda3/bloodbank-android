@@ -51,7 +51,8 @@ public class ArticlesAndDonationsContainerFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
 
         setUpHomeActivity();
-        navigationActivity.changeUi(View.VISIBLE,View.GONE);
+        navigationActivity.changeUi(View.VISIBLE, View.GONE);
+        navigationActivity.setTitle(getString(R.string.home));
 
         ViewPagerWithFragmentAdapter vpadapter = new ViewPagerWithFragmentAdapter(getChildFragmentManager());
 

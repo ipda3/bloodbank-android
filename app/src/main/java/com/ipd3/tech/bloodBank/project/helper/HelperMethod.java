@@ -91,13 +91,12 @@ public class HelperMethod {
 
     public static void showProgressDialog(Activity activity, String title) {
         try {
-            if (checkDialog == null) {
-                checkDialog = new ProgressDialog(activity);
-                checkDialog.setMessage(title);
-                checkDialog.setIndeterminate(false);
-                checkDialog.setCancelable(false);
 
-            }
+            checkDialog = new ProgressDialog(activity);
+            checkDialog.setMessage(title);
+            checkDialog.setIndeterminate(false);
+            checkDialog.setCancelable(false);
+
             checkDialog.show();
 
         } catch (Exception e) {
@@ -107,9 +106,9 @@ public class HelperMethod {
 
     public static void dismissProgressDialog() {
         try {
-            if (checkDialog != null && checkDialog.isShowing()) {
-                checkDialog.dismiss();
-            }
+
+            checkDialog.dismiss();
+
         } catch (Exception e) {
 
         }
@@ -199,7 +198,7 @@ public class HelperMethod {
         toast.show();
     }
 
-    public static void removeNotificationToken(ApiServices apiServices, UserData userData){
+    public static void removeNotificationToken(ApiServices apiServices, UserData userData) {
         apiServices.getRemoveNotificationToken(FirebaseInstanceId.getInstance().getToken(), userData.getApiToken()).enqueue(new Callback<GeneralResponse>() {
             @Override
             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
@@ -211,7 +210,7 @@ public class HelperMethod {
         });
     }
 
-    public static void registerNotificationToken(ApiServices apiServices, UserData userData){
+    public static void registerNotificationToken(ApiServices apiServices, UserData userData) {
         apiServices.getRegisterNotificationToken(FirebaseInstanceId.getInstance().getToken(), userData.getApiToken(), "android").enqueue(new Callback<GeneralResponse>() {
             @Override
             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {

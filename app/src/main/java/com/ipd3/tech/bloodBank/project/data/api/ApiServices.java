@@ -47,7 +47,7 @@ public interface ApiServices {
                                      @Field("password_confirmation") String password_confirmation,
                                      @Field("phone") String phone);
 
-    @POST("register")
+    @POST("signup")
     @FormUrlEncoded
     Call<Login> getRegister(@Field("name") String name,
                             @Field("email") String email,

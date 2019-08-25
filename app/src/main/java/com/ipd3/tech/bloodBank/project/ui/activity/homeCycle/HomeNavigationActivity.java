@@ -48,12 +48,12 @@ public class HomeNavigationActivity extends BaseActivity
     ImageView menu;
     @BindView(R.id.App_Bar_TextViewChange)
     TextView AppBarTextViewChange;
-    @BindView(R.id.notification)
-    ImageView notification;
-    @BindView(R.id.notificationCount)
-    TextView notificationCount;
-    @BindView(R.id.back)
-    ImageView back;
+    @BindView(R.id.home_navigation_activity_iv_notification)
+    ImageView homeNavigationActivityIvNotification;
+    @BindView(R.id.home_navigation_activity_tv_notificationCount)
+    TextView homeNavigationActivityIvNotificationCount;
+    @BindView(R.id.home_navigation_activity_iv_back)
+    ImageView homeNavigationActivityIvBack;
     @BindView(R.id.toolbar)
     RelativeLayout toolbar;
     @BindView(R.id.Content_Frame_Replace)
@@ -65,7 +65,6 @@ public class HomeNavigationActivity extends BaseActivity
     @BindView(R.id.Home_Detales)
     FrameLayout HomeDetales;
 
-    public FrameLayout HomeDetales1;
     private ApiServices apiServices;
     private UserData userData;
     public DonationData donationData;
@@ -76,7 +75,7 @@ public class HomeNavigationActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         HelperMethod.changeLang(this, "ar");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        setContentView(R.layout.activity_home_navigation);
         ButterKnife.bind(this);
 
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
@@ -121,14 +120,14 @@ public class HomeNavigationActivity extends BaseActivity
                     if (response.body().getStatus() == 1) {
                         if (response.body().getData().getNotificationsCount() > 0) {
                             if (VISIBLE) {
-                                notificationCount.setVisibility(View.VISIBLE);
+                                homeNavigationActivityIvNotificationCount.setVisibility(View.VISIBLE);
                             } else {
-                                notificationCount.setVisibility(View.GONE);
+                                homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
                             }
 
-                            notificationCount.setText(String.valueOf(response.body().getData().getNotificationsCount()));
+                            homeNavigationActivityIvNotificationCount.setText(String.valueOf(response.body().getData().getNotificationsCount()));
                         } else {
-                            notificationCount.setVisibility(View.GONE);
+                            homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
                         }
 
                     }
@@ -173,27 +172,27 @@ public class HomeNavigationActivity extends BaseActivity
             EditProfileFragment adjustInformation = new EditProfileFragment();
             HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, adjustInformation);
             AppBarTextViewChange.setText(R.string.adjustInf);
-            notification.setVisibility(View.GONE);
-            notificationCount.setVisibility(View.GONE);
-            back.setVisibility(View.VISIBLE);
+            homeNavigationActivityIvNotification.setVisibility(View.GONE);
+            homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
+            homeNavigationActivityIvBack.setVisibility(View.VISIBLE);
 
         } else if (id == R.id.not) {
             NotificationPropertiesFragment notificationProperities = new NotificationPropertiesFragment();
             HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, notificationProperities);
 
             AppBarTextViewChange.setText(R.string.noti_porep);
-            notification.setVisibility(View.GONE);
-            notificationCount.setVisibility(View.GONE);
-            back.setVisibility(View.VISIBLE);
+            homeNavigationActivityIvNotification.setVisibility(View.GONE);
+            homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
+            homeNavigationActivityIvBack.setVisibility(View.VISIBLE);
 
         } else if (id == R.id.fav) {
             ArticlesFragment favourites = new ArticlesFragment();
             favourites.favourites = true;
             HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, favourites);
             AppBarTextViewChange.setText(R.string.fav);
-            notification.setVisibility(View.VISIBLE);
-            notificationCount.setVisibility(View.VISIBLE);
-            back.setVisibility(View.GONE);
+            homeNavigationActivityIvNotification.setVisibility(View.VISIBLE);
+            homeNavigationActivityIvNotificationCount.setVisibility(View.VISIBLE);
+            homeNavigationActivityIvBack.setVisibility(View.GONE);
 
         } else if (id == R.id.main) {
             ArticlesAndDonationsContainerFragment articlesAndDonations = new ArticlesAndDonationsContainerFragment();
@@ -204,17 +203,17 @@ public class HomeNavigationActivity extends BaseActivity
             CallUsFragment call_us = new CallUsFragment();
             HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, call_us);
             AppBarTextViewChange.setText(R.string.call_us);
-            notification.setVisibility(View.GONE);
-            notificationCount.setVisibility(View.GONE);
-            back.setVisibility(View.VISIBLE);
+            homeNavigationActivityIvNotification.setVisibility(View.GONE);
+            homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
+            homeNavigationActivityIvBack.setVisibility(View.VISIBLE);
 
         } else if (id == R.id.abo) {
             AboutFragment about = new AboutFragment();
             HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, about);
             AppBarTextViewChange.setText(R.string.about);
-            notification.setVisibility(View.GONE);
-            notificationCount.setVisibility(View.GONE);
-            back.setVisibility(View.VISIBLE);
+            homeNavigationActivityIvNotification.setVisibility(View.GONE);
+            homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
+            homeNavigationActivityIvBack.setVisibility(View.VISIBLE);
 
         } else if (id == R.id.out) {
 
@@ -227,21 +226,21 @@ public class HomeNavigationActivity extends BaseActivity
         return true;
     }
 
-    @OnClick({R.id.back, R.id.notification})
+    @OnClick({R.id.home_navigation_activity_iv_back, R.id.home_navigation_activity_iv_notification})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.back:
+            case R.id.home_navigation_activity_iv_back:
 
                 onBackPressed();
 
                 break;
-            case R.id.notification:
+            case R.id.home_navigation_activity_iv_notification:
 
                 NotificationFragment notificationPush = new NotificationFragment();
                 HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, notificationPush);
-                notification.setVisibility(View.GONE);
-                notificationCount.setVisibility(View.GONE);
-                back.setVisibility(View.VISIBLE);
+                homeNavigationActivityIvNotification.setVisibility(View.GONE);
+                homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
+                homeNavigationActivityIvBack.setVisibility(View.VISIBLE);
                 AppBarTextViewChange.setText(R.string.notiii);
                 AppBarTextViewChange.setVisibility(View.VISIBLE);
                 break;
@@ -253,13 +252,14 @@ public class HomeNavigationActivity extends BaseActivity
 
 //        ArticlesAndDonationsContainerFragment articlesAndDonations = new ArticlesAndDonationsContainerFragment();
 //        HelperMethod.replaceFragment(getSupportFragmentManager(), R.id.Content_Frame_Replace, articlesAndDonations);
-//        notification.setVisibility(View.VISIBLE);
-//        notificationCount.setVisibility(View.VISIBLE);
-//        back.setVisibility(View.GONE);
+//        homeNavigationActivityIvNotification.setVisibility(View.VISIBLE);
+//        homeNavigationActivityIvNotificationCount.setVisibility(View.VISIBLE);
+//        homeNavigationActivityIvBack.setVisibility(View.GONE);
 //        AppBarTextViewChange.setVisibility(View.GONE);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        if (drawer.isDrawerOpen(drawer)) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            //drawer is open
             drawer.closeDrawer(GravityCompat.START);
         } else {
             baseFragment.onBack();
@@ -268,18 +268,22 @@ public class HomeNavigationActivity extends BaseActivity
     }
 
     public void changeUi(int Visibility, int unVisibility) {
-        notification.setVisibility(Visibility);
-        notificationCount.setVisibility(Visibility);
-        back.setVisibility(unVisibility);
+        homeNavigationActivityIvNotification.setVisibility(Visibility);
+        homeNavigationActivityIvNotificationCount.setVisibility(Visibility);
+        homeNavigationActivityIvBack.setVisibility(unVisibility);
         menu.setVisibility(Visibility);
     }
 
     @SuppressLint("SetTextI18n")
     public void changeUiDonation() {
-        notification.setVisibility(View.GONE);
-        notificationCount.setVisibility(View.GONE);
-        back.setVisibility(View.VISIBLE);
+        homeNavigationActivityIvNotification.setVisibility(View.GONE);
+        homeNavigationActivityIvNotificationCount.setVisibility(View.GONE);
+        homeNavigationActivityIvBack.setVisibility(View.VISIBLE);
         AppBarTextViewChange.setText(getString(R.string.donation) + donationData.getPatientName());
+    }
+
+    public void setTitle(String title) {
+        AppBarTextViewChange.setText(title);
     }
 
 }

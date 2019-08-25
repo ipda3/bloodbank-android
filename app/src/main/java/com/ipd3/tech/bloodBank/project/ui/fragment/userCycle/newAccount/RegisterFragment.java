@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ import retrofit2.Response;
 
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.customToast;
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.disappearKeypad;
+import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.dismissProgressDialog;
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.showProgressDialog;
 
 
@@ -69,6 +71,8 @@ public class RegisterFragment extends BaseFragment {
     TextView registerFragmentTvLastDontitionData;
     @BindView(R.id.register_fragment_sp_blood_type)
     Spinner registerFragmentSpBloodType;
+    @BindView(R.id.register_fragment_rl_spinner_city_container)
+    RelativeLayout registerFragmentRlSpinnerCityContainer;
     Unbinder unbinder;
 
     private DateTxt Bid;
@@ -182,6 +186,8 @@ public class RegisterFragment extends BaseFragment {
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 if (i != 0) {
                                     getCities(GovernoratesId.get(i));
+                                } else {
+                                    registerFragmentRlSpinnerCityContainer.setVisibility(View.GONE);
                                 }
 
                             }
@@ -208,41 +214,53 @@ public class RegisterFragment extends BaseFragment {
     }
 
     private void getCities(int i) {
-        apiServices.getCities(i).enqueue(new Callback<Cities>() {
-            @Override
-            public void onResponse(Call<Cities> call, Response<Cities> response) {
-                try {
-                    if (response.body().getStatus() == 1) {
+        if (InternetState.isConnected(getActivity())) {
 
-                        citiesTxt = new ArrayList<>();
-                        citiesId = new ArrayList<>();
+            showProgressDialog(getActivity(), getString(R.string.register));
+            apiServices.getCities(i).enqueue(new Callback<Cities>() {
+                @Override
+                public void onResponse(Call<Cities> call, Response<Cities> response) {
+                    try {
+                        dismissProgressDialog();
+                        if (response.body().getStatus() == 1) {
 
-                        citiesTxt.add(getString(R.string.select_city));
-                        citiesId.add(0);
+                            registerFragmentRlSpinnerCityContainer.setVisibility(View.VISIBLE);
 
-                        for (int i = 0; i < response.body().getData().size(); i++) {
-                            citiesTxt.add(response.body().getData().get(i).getName());
-                            citiesId.add(response.body().getData().get(i).getId());
+                            citiesTxt = new ArrayList<>();
+                            citiesId = new ArrayList<>();
+
+                            citiesTxt.add(getString(R.string.select_city_));
+                            citiesId.add(0);
+
+                            for (int i = 0; i < response.body().getData().size(); i++) {
+                                citiesTxt.add(response.body().getData().get(i).getName());
+                                citiesId.add(response.body().getData().get(i).getId());
+                            }
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                    R.layout.spinner_item, citiesTxt);
+
+                            registerFragmentSpCity.setAdapter(adapter);
+
+                        } else {
+
                         }
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                                R.layout.spinner_item, citiesTxt);
-
-                        registerFragmentSpCity.setAdapter(adapter);
-
-                    } else {
+                    } catch (Exception e) {
 
                     }
-                } catch (Exception e) {
+                }
+
+                @Override
+                public void onFailure(Call<Cities> call, Throwable t) {
+
+                    dismissProgressDialog();
 
                 }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<Cities> call, Throwable t) {
+        } else {
 
-            }
-        });
+        }
     }
 
 

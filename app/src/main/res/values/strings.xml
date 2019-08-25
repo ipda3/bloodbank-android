@@ -159,6 +159,7 @@
     <string name="no_notificaation">لا يوجد إشعارات جديدة</string>
     <string name="phonemm">jrgkjhertjek</string>
     <string name="select_city">من فضلك اختر المدينة</string>
+    <string name="select_city_"> اختر المدينة</string>
     <string name="select_blood_bank">من فضلك اختر فصيلة الدم</string>
     <string name="failed_required">الحقل مطلوب</string>
     <string name="select_governorates">اختر المحافظه</string>
@@ -177,6 +178,7 @@
     <string name="select_categories">جميع الفئات</string>
     <string name="phone_">رقم الجوال :</string>
     <string name="counter_order">عدد الأكياس المطلوبة :</string>
+    <string name="home">الرئيسية</string>
 
 
 </resources>

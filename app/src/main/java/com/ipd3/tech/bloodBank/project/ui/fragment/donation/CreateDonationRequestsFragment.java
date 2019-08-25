@@ -217,35 +217,41 @@ public class CreateDonationRequestsFragment extends BaseFragment {
         apiServices.getBloods().enqueue(new Callback<BloodTypes>() {
             @Override
             public void onResponse(Call<BloodTypes> call, Response<BloodTypes> response) {
-                if (response.body().getStatus() == 1) {
+                try{
 
-                    BloodTypesTxt.add(getString(R.string.select_blood));
-                    BloodTypesId.add(0);
+                    if (response.body().getStatus() == 1) {
 
-                    for (int i = 0; i < response.body().getData().size(); i++) {
-                        BloodTypesTxt.add(response.body().getData().get(i).getName());
-                        BloodTypesId.add(response.body().getData().get(i).getId());
-                    }
+                        BloodTypesTxt.add(getString(R.string.select_blood));
+                        BloodTypesId.add(0);
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                            R.layout.spinner_item, BloodTypesTxt);
+                        for (int i = 0; i < response.body().getData().size(); i++) {
+                            BloodTypesTxt.add(response.body().getData().get(i).getName());
+                            BloodTypesId.add(response.body().getData().get(i).getId());
+                        }
 
-                    createDonationRequestsFragmentSpBloodType.setAdapter(adapter);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                R.layout.spinner_item, BloodTypesTxt);
 
-                    createDonationRequestsFragmentSpBloodType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            if (i != 0) {
-                                blood_type_id = BloodTypesId.get(i);
+                        createDonationRequestsFragmentSpBloodType.setAdapter(adapter);
+
+                        createDonationRequestsFragmentSpBloodType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                if (i != 0) {
+                                    blood_type_id = BloodTypesId.get(i);
+                                }
+
                             }
 
-                        }
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
+                            }
+                        });
 
-                        }
-                    });
+                    }
+
+                }catch (Exception e){
 
                 }
             }

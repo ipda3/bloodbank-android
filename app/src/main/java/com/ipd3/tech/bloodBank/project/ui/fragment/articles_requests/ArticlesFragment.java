@@ -3,6 +3,7 @@ package com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ipd3.tech.bloodBank.project.R;
 import com.ipd3.tech.bloodBank.project.adapter.homeAdapter.ArticlesAdapter;
@@ -26,7 +26,6 @@ import com.ipd3.tech.bloodBank.project.data.model.auth.login.UserData;
 import com.ipd3.tech.bloodBank.project.data.model.post.posts.Posts;
 import com.ipd3.tech.bloodBank.project.data.model.post.posts.PostsData;
 import com.ipd3.tech.bloodBank.project.data.model.publiceData.categeories.Categeories;
-import com.ipd3.tech.bloodBank.project.helper.HelperMethod;
 import com.ipd3.tech.bloodBank.project.helper.OnEndLess;
 import com.ipd3.tech.bloodBank.project.helper.network.InternetState;
 import com.ipd3.tech.bloodBank.project.ui.fragment.BaseFragment;
@@ -43,7 +42,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.customToast;
+import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.disappearKeypad;
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.dismissProgressDialog;
+import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.showProgressDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +63,8 @@ public class ArticlesFragment extends BaseFragment {
     TextView articlesFragmentTvNoResults;
     @BindView(R.id.articles_fragment_ll_filter)
     LinearLayout articlesFragmentLlFilter;
+    @BindView(R.id.articles_fragment_srl_articles_list_refresh)
+    SwipeRefreshLayout articlesFragmentSrlArticlesListRefresh;
     Unbinder unbinder;
 
     private List<String> CategorisesTxt = new ArrayList<>();
@@ -94,13 +97,35 @@ public class ArticlesFragment extends BaseFragment {
         user = SharedPreferencesManger.loadUserData(getActivity());
         apiServices = RetrofitClient.getClient().create(ApiServices.class);
 
+        setUpHomeActivity();
+
         if (favourites) {
             articlesFragmentLlFilter.setVisibility(View.GONE);
+            navigationActivity.setTitle(getString(R.string.fav));
         }
 
         initRecyclerView();
 
         getCategories();
+
+        articlesFragmentSrlArticlesListRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onEndLess.current_page = 1;
+                onEndLess.previousTotal = 0;
+                onEndLess.previous_page = 1;
+
+                max = 0;
+
+                postsList = new ArrayList<>();
+
+                articlesAdapter = new ArticlesAdapter(getActivity(), getActivity(), postsList);
+                articlesFragmentRvListArticles.setAdapter(articlesAdapter);
+
+                getPosts(1);
+            }
+        });
+
         getPosts(1);
         return view;
     }
@@ -137,45 +162,51 @@ public class ArticlesFragment extends BaseFragment {
 
         articlesAdapter = new ArticlesAdapter(getActivity(), getActivity(), postsList);
         articlesFragmentRvListArticles.setAdapter(articlesAdapter);
+
     }
 
     private void getCategories() {
         apiServices.getCategeories().enqueue(new Callback<Categeories>() {
             @Override
             public void onResponse(Call<Categeories> call, Response<Categeories> response) {
-                if (response.body().getStatus() == 1) {
+                try{
 
-                    CategorisesTxt.add(getString(R.string.select_categories));
-                    CategoriesId.add(0);
+                    if (response.body().getStatus() == 1) {
 
-                    for (int i = 0; i < response.body().getData().size(); i++) {
-                        CategorisesTxt.add(response.body().getData().get(i).getName());
-                        CategoriesId.add(response.body().getData().get(i).getId());
+                        CategorisesTxt.add(getString(R.string.select_categories));
+                        CategoriesId.add(0);
+
+                        for (int i = 0; i < response.body().getData().size(); i++) {
+                            CategorisesTxt.add(response.body().getData().get(i).getName());
+                            CategoriesId.add(response.body().getData().get(i).getId());
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                R.layout.soinner_item_2, CategorisesTxt);
+
+                        articlesFragmentSpCategories.setAdapter(adapter);
+
+                        articlesFragmentSpCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                categoryId = CategoriesId.get(i);
+
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+
+                    } else {
+                        customToast(getActivity(), response.body().getMsg());
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                            R.layout.soinner_item_2, CategorisesTxt);
+                }catch (Exception e){
 
-                    articlesFragmentSpCategories.setAdapter(adapter);
-
-                    articlesFragmentSpCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                            categoryId = CategoriesId.get(i);
-
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                        }
-                    });
-
-                } else {
-                    customToast(getActivity(), response.body().getMsg());
                 }
-
             }
 
             @Override
@@ -194,7 +225,9 @@ public class ArticlesFragment extends BaseFragment {
 
     private void getPosts(int page) {
         if (InternetState.isConnected(getActivity())) {
-            HelperMethod.showProgressDialog(getActivity(), getString(R.string.waiit));
+            if (page == 1) {
+                showProgressDialog(getActivity(), getString(R.string.waiit));
+            }
 
             Call<Posts> call;
 
@@ -204,48 +237,72 @@ public class ArticlesFragment extends BaseFragment {
                 call = apiServices.getFavouritesList(user.getApiToken(), page);
             }
 
-            call.enqueue(new Callback<Posts>() {
-                @Override
-                public void onResponse(Call<Posts> call, Response<Posts> response) {
+            callData(page, call);
 
-                    try {
-                        if (response.body().getStatus() == 1) {
-                            if (response.body().getData().getTotal() > 0) {
-                                articlesFragmentTvNoResults.setVisibility(View.GONE);
-                            } else {
-                                articlesFragmentTvNoResults.setVisibility(View.VISIBLE);
-
-                            }
-                            max = response.body().getData().getLastPage();
-                            postsList.addAll(response.body().getData().getData());
-                            articlesAdapter.notifyDataSetChanged();
-                            dismissProgressDialog();
-
-                        } else {
-                            Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
-                            customToast(getActivity(), response.body().getMsg());
-                        }
-                    } catch (Exception e) {
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Posts> call, Throwable t) {
-                    dismissProgressDialog();
-                    customToast(getActivity(), getResources().getString(R.string.error));
-                }
-            });
         } else {
             dismissProgressDialog();
             customToast(getActivity(), getResources().getString(R.string.offline));
+            articlesFragmentSrlArticlesListRefresh.setRefreshing(false);
         }
 
     }
 
+    private void callData(int page, Call<Posts> call) {
+        call.enqueue(new Callback<Posts>() {
+            @Override
+            public void onResponse(Call<Posts> call, Response<Posts> response) {
+
+                try {
+                    dismissProgressDialog();
+                    articlesFragmentSrlArticlesListRefresh.setRefreshing(false);
+                    if (response.body().getStatus() == 1) {
+
+                        if (page == 1) {
+                            if (response.body().getData().getTotal() > 0) {
+                                articlesFragmentTvNoResults.setVisibility(View.GONE);
+
+                            } else {
+                                articlesFragmentTvNoResults.setVisibility(View.VISIBLE);
+                            }
+
+                            onEndLess.current_page = 1;
+                            onEndLess.previousTotal = 0;
+                            onEndLess.previous_page = 1;
+
+                            max = 0;
+
+                            postsList = new ArrayList<>();
+                            articlesAdapter = new ArticlesAdapter(getActivity(), getActivity(), postsList);
+                            articlesFragmentRvListArticles.setAdapter(articlesAdapter);
+
+                        }
+
+                        max = response.body().getData().getLastPage();
+                        postsList.addAll(response.body().getData().getData());
+                        articlesAdapter.notifyDataSetChanged();
+
+
+                    } else {
+                        customToast(getActivity(), response.body().getMsg());
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Posts> call, Throwable t) {
+                dismissProgressDialog();
+                customToast(getActivity(), getResources().getString(R.string.error));
+                articlesFragmentSrlArticlesListRefresh.setRefreshing(false);
+            }
+        });
+    }
+
     @OnClick({R.id.articles_fragment_iv_search, R.id.articles_fragment_rl_sub_view})
     public void onViewClicked(View view) {
-        HelperMethod.disappearKeypad(getActivity(), view);
+        disappearKeypad(getActivity(), view);
         switch (view.getId()) {
             case R.id.articles_fragment_iv_search:
 
@@ -283,64 +340,27 @@ public class ArticlesFragment extends BaseFragment {
                     getPostsFilter(1);
                 }
 
-                HelperMethod.showProgressDialog(getActivity(), getString(R.string.waiit));
-
                 break;
         }
     }
 
-
     private void getPostsFilter(int page) {
         if (InternetState.isConnected(getActivity())) {
-            HelperMethod.showProgressDialog(getActivity(), getString(R.string.waiit));
 
-            apiServices.getPostFilter(user.getApiToken(), keyword, page, categoryId).enqueue(new Callback<Posts>() {
-                @Override
-                public void onResponse(Call<Posts> call, Response<Posts> response) {
-                    try {
-                        if (response.body().getStatus() == 1) {
+            if (page == 1) {
+                showProgressDialog(getActivity(), getString(R.string.waiit));
+            }
 
-                            dismissProgressDialog();
+            Call<Posts> call = apiServices.getPostFilter(user.getApiToken(), keyword, page, categoryId);
 
-                            max = response.body().getData().getLastPage();
+            callData(page, call);
 
-                            if (page == 1) {
-                                if (response.body().getData().getTotal() > 0) {
-                                    articlesFragmentTvNoResults.setVisibility(View.GONE);
-
-                                } else {
-                                    articlesFragmentTvNoResults.setVisibility(View.VISIBLE);
-
-                                }
-                                initRecyclerView();
-                                postsList = new ArrayList<>();
-                                articlesAdapter = new ArticlesAdapter(getActivity(), getActivity(), postsList);
-                                articlesFragmentRvListArticles.setAdapter(articlesAdapter);
-                            }
-                            postsList.addAll(response.body().getData().getData());
-                            articlesAdapter.notifyDataSetChanged();
-
-                        } else {
-                            dismissProgressDialog();
-
-                            customToast(getActivity(), response.body().getMsg());
-                        }
-                    } catch (Exception e) {
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Posts> call, Throwable t) {
-                    dismissProgressDialog();
-
-                    customToast(getActivity(), getResources().getString(R.string.error));
-                }
-            });
         } else {
             dismissProgressDialog();
 
             customToast(getActivity(), getResources().getString(R.string.offline));
+
+            articlesFragmentSrlArticlesListRefresh.setRefreshing(false);
         }
 
 

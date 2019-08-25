@@ -3,6 +3,7 @@ package com.ipd3.tech.bloodBank.project.ui.fragment.articles_requests;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,6 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.support.constraint.Constraints.TAG;
+import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.customToast;
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.dismissProgressDialog;
 import static com.ipd3.tech.bloodBank.project.helper.HelperMethod.showProgressDialog;
 
@@ -59,6 +61,8 @@ public class DonationRequestsFragment extends Fragment {
     RecyclerView donationRequestsFragmentRlDonationsList;
     @BindView(R.id.donation_requests_fragment_tv_no_results)
     TextView donation_requests_fragment_tv_no_results;
+    @BindView(R.id.donation_requests_fragment_srl_donations_list_refresh)
+    SwipeRefreshLayout donationRequestsFragmentSrlDonationsListRefresh;
     Unbinder unbinder;
 
     private List<String> BloodTypesTxt = new ArrayList<>();
@@ -96,6 +100,25 @@ public class DonationRequestsFragment extends Fragment {
 
         getGovernorates();
         getBloodTypes();
+
+        donationRequestsFragmentSrlDonationsListRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onEndLess.current_page = 1;
+                onEndLess.previousTotal = 0;
+                onEndLess.previous_page = 1;
+
+                max = 0;
+
+                donationList = new ArrayList<>();
+
+                donationAdapter = new DonationAdapter(getActivity(), getActivity(), donationList);
+                donationRequestsFragmentRlDonationsList.setAdapter(donationAdapter);
+
+                getDonations(1);
+            }
+        });
+
         getDonations(1);
         return view;
 
@@ -143,34 +166,38 @@ public class DonationRequestsFragment extends Fragment {
         apiServices.getBloods().enqueue(new Callback<BloodTypes>() {
             @Override
             public void onResponse(Call<BloodTypes> call, Response<BloodTypes> response) {
-                if (response.body().getStatus() == 1) {
+                try {
+                    if (response.body().getStatus() == 1) {
 
-                    BloodTypesTxt.add("كل الفصائل");
-                    BloodTypesId.add(0);
+                        BloodTypesTxt.add("كل الفصائل");
+                        BloodTypesId.add(0);
 
-                    for (int i = 0; i < response.body().getData().size(); i++) {
-                        BloodTypesTxt.add(response.body().getData().get(i).getName());
-                        BloodTypesId.add(response.body().getData().get(i).getId());
+                        for (int i = 0; i < response.body().getData().size(); i++) {
+                            BloodTypesTxt.add(response.body().getData().get(i).getName());
+                            BloodTypesId.add(response.body().getData().get(i).getId());
+                        }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                R.layout.spinner_item_small, BloodTypesTxt);
+
+                        donationRequestsFragmentSpBloodTypes.setAdapter(adapter);
+
+                        donationRequestsFragmentSpBloodTypes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                bloodTypeId = BloodTypesId.get(i);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
                     }
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                            R.layout.spinner_item_small, BloodTypesTxt);
-
-                    donationRequestsFragmentSpBloodTypes.setAdapter(adapter);
-
-                    donationRequestsFragmentSpBloodTypes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            bloodTypeId = BloodTypesId.get(i);
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> adapterView) {
-
-                        }
-                    });
+                } catch (Exception e) {
 
                 }
+
             }
 
             @Override
@@ -232,69 +259,27 @@ public class DonationRequestsFragment extends Fragment {
 
     private void getDonations(int page) {
         if (InternetState.isConnected(getActivity())) {
-            showProgressDialog(getActivity(), "برجاء الإنتظار");
 
             donationRequestsCall = RetrofitClient.getClient().create(ApiServices.class).getDonationRequests(user.getApiToken(), page);
-            donationRequestsCall.enqueue(new Callback<AllDonation>() {
-                @Override
-                public void onResponse(Call<AllDonation> call, Response<AllDonation> response) {
-                    if (response.body().getStatus() == 1) {
-                        if (response.body().getData().getTotal() > 0) {
-                            donation_requests_fragment_tv_no_results.setVisibility(View.GONE);
-                        } else {
-                            donation_requests_fragment_tv_no_results.setVisibility(View.VISIBLE);
 
-                        }
-                        max = response.body().getData().getLastPage();
-                        donationList.addAll(response.body().getData().getData());
-                        donationAdapter.notifyDataSetChanged();
-                        dismissProgressDialog();
+            callData(page, donationRequestsCall);
 
-
-                    } else {
-                        Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<AllDonation> call, Throwable t) {
-                    dismissProgressDialog();
-                    Log.d("", "onFailure: " + t.toString());
-                    Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
-                }
-            });
         } else {
             dismissProgressDialog();
-            Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
+            customToast(getActivity(), getResources().getString(R.string.offline));
+
+            donationRequestsFragmentSrlDonationsListRefresh.setRefreshing(false);
         }
 
     }
 
     @OnClick(R.id.donation_requests_fragment_iv_search)
     public void onViewClicked() {
-        if (InternetState.isConnected(getActivity())) {
-            showProgressDialog(getActivity(), getString(R.string.waiit));
 
-            if (donationRequestsFragmentSpBloodTypes.getSelectedItemPosition() == 0
-                    && donationRequestsFragmentSpCity.getSelectedItemPosition() == 0) {
-                if (Filter) {
-                    Filter = false;
-
-                    onEndLess.current_page = 1;
-                    onEndLess.previous_page = 1;
-                    onEndLess.previousTotal = 0;
-                    onEndLess.totalItemCount = 0;
-                    max = 0;
-
-                    donationList = new ArrayList<>();
-                    donationAdapter = new DonationAdapter(getActivity(), getActivity(), donationList);
-                    donationRequestsFragmentRlDonationsList.setAdapter(donationAdapter);
-
-                    getDonations(1);
-                }
-
-            } else {
-                Filter = true;
+        if (donationRequestsFragmentSpBloodTypes.getSelectedItemPosition() == 0
+                && donationRequestsFragmentSpCity.getSelectedItemPosition() == 0) {
+            if (Filter) {
+                Filter = false;
 
                 onEndLess.current_page = 1;
                 onEndLess.previous_page = 1;
@@ -306,65 +291,80 @@ public class DonationRequestsFragment extends Fragment {
                 donationAdapter = new DonationAdapter(getActivity(), getActivity(), donationList);
                 donationRequestsFragmentRlDonationsList.setAdapter(donationAdapter);
 
-
-                getFilter(1);
+                getDonations(1);
             }
 
         } else {
-            dismissProgressDialog();
-            Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
+            Filter = true;
+
+            onEndLess.current_page = 1;
+            onEndLess.previous_page = 1;
+            onEndLess.previousTotal = 0;
+            onEndLess.totalItemCount = 0;
+            max = 0;
+
+            donationList = new ArrayList<>();
+            donationAdapter = new DonationAdapter(getActivity(), getActivity(), donationList);
+            donationRequestsFragmentRlDonationsList.setAdapter(donationAdapter);
+
+
+            getFilter(1);
         }
+
     }
 
     private void getFilter(int page) {
         if (InternetState.isConnected(getActivity())) {
-            apiServices.getDonationRequestsFilter(user.getApiToken(), bloodTypeId, governorateId, page)
-                    .enqueue(new Callback<AllDonation>() {
-                        @Override
-                        public void onResponse(Call<AllDonation> call, Response<AllDonation> response) {
-                            if (response.body().getStatus() == 1) {
-                                dismissProgressDialog();
 
-                                max = response.body().getData().getLastPage();
+            if (page == 1) {
+                showProgressDialog(getActivity(), getString(R.string.waiit));
+            }
 
-                                if (page == 1) {
-                                    if (response.body().getData().getTotal() > 0) {
-                                        donation_requests_fragment_tv_no_results.setVisibility(View.GONE);
+            callData(page, apiServices.getDonationRequestsFilter(user.getApiToken(), bloodTypeId, governorateId, page));
 
-                                    } else {
-                                        donation_requests_fragment_tv_no_results.setVisibility(View.VISIBLE);
-
-                                    }
-                                    initRecyclerView();
-                                    donationList = new ArrayList<>();
-                                    donationAdapter = new DonationAdapter(getActivity(), getActivity(), donationList);
-                                    donationRequestsFragmentRlDonationsList.setAdapter(donationAdapter);
-                                }
-
-                                donationList.addAll(response.body().getData().getData());
-                                donationAdapter.notifyDataSetChanged();
-
-                            } else {
-                                dismissProgressDialog();
-                                Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
-
-                            }
-
-                        }
-
-
-                        @Override
-                        public void onFailure(Call<AllDonation> call, Throwable t) {
-                            dismissProgressDialog();
-                            Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
-                        }
-                    });
         } else {
             dismissProgressDialog();
-            Toast.makeText(getActivity(), R.string.offline, Toast.LENGTH_SHORT).show();
+            customToast(getActivity(), getResources().getString(R.string.offline));
+
+            donationRequestsFragmentSrlDonationsListRefresh.setRefreshing(false);
         }
 
 
     }
 
+    private void callData(int page, Call<AllDonation> donationRequestsCall) {
+
+        donationRequestsCall.enqueue(new Callback<AllDonation>() {
+            @Override
+            public void onResponse(Call<AllDonation> call, Response<AllDonation> response) {
+                if (response.body().getStatus() == 1) {
+                    if (response.body().getData().getTotal() > 0) {
+                        donation_requests_fragment_tv_no_results.setVisibility(View.GONE);
+                    } else {
+                        donation_requests_fragment_tv_no_results.setVisibility(View.VISIBLE);
+
+                    }
+                    max = response.body().getData().getLastPage();
+                    donationList.addAll(response.body().getData().getData());
+                    donationAdapter.notifyDataSetChanged();
+                    dismissProgressDialog();
+
+
+                } else {
+                    Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AllDonation> call, Throwable t) {
+                dismissProgressDialog();
+                Log.d("", "onFailure: " + t.toString());
+                customToast(getActivity(), getResources().getString(R.string.error));
+                donationRequestsFragmentSrlDonationsListRefresh.setRefreshing(false);
+            }
+        });
+
+    }
+
 }
+

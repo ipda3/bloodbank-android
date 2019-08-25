@@ -10,10 +10,10 @@
     <LinearLayout
         android:id="@+id/articles_fragment_ll_filter"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimens_xxxxl"
+        android:layout_height="@dimen/dimens_xxxl"
         android:layout_marginEnd="@dimen/dim_m"
         android:layout_marginStart="@dimen/dim_m"
-        android:layout_marginTop="@dimen/dimens_l"
+        android:layout_marginTop="@dimen/dim_m"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -47,7 +47,7 @@
                 android:layout_weight="3"
                 android:background="@null"
                 android:hint="@string/enterKeyword"
-                android:padding="@dimen/dimens_sss"
+                android:padding="@dimen/dim_s"
                 android:textSize="@dimen/txt_size_s"
                 tools:ignore="NestedWeights" />
 
@@ -56,7 +56,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="@dimen/dimens_l"
+                android:padding="@dimen/dim_mm"
                 android:src="@drawable/search" />
 
         </LinearLayout>
@@ -69,15 +69,26 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/articles_fragment_ll_filter">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/articles_fragment_rv_list_articles"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/articles_fragment_srl_articles_list_refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dim_m"
-            android:layout_marginStart="@dimen/dim_m"
-            android:layout_marginTop="@dimen/dimens_l">
+            android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/articles_fragment_rv_list_articles"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/dim_m"
+                    android:layout_marginStart="@dimen/dim_m"
+                    android:layout_marginTop="@dimen/dim_m" />
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

@@ -62,4 +62,5 @@
     <dimen name="caring">250dp</dimen>
     <dimen name="back">20dp</dimen>
     <dimen name="notiImg">30dp</dimen>
+    <dimen name="dim_mm">12dp</dimen>
 </resources>

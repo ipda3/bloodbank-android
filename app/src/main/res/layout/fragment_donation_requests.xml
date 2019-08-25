@@ -12,7 +12,7 @@
         android:layout_height="@dimen/dimens_xxxl"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/dim_m"
-        android:layout_marginTop="@dimen/dimens_l"
+        android:layout_marginTop="@dimen/dim_m"
         android:background="@drawable/whiteciecle"
         android:padding="@dimen/careimage"
         android:src="@drawable/search" />
@@ -23,7 +23,7 @@
         android:layout_height="@dimen/dimens_xxxl"
         android:layout_marginEnd="@dimen/dim_m"
         android:layout_marginStart="@dimen/dim_m"
-        android:layout_marginTop="@dimen/dimens_l"
+        android:layout_marginTop="@dimen/dim_m"
         android:layout_toStartOf="@id/donation_requests_fragment_iv_search"
         android:orientation="horizontal">
 
@@ -58,16 +58,28 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/donation_requests_fragment_rl_donations_list"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/donation_requests_fragment_srl_donations_list_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/donation_requests_fragment_ll_filter_container"
-        android:layout_marginEnd="@dimen/dim_m"
-        android:layout_marginStart="@dimen/dim_m"
-        android:layout_marginTop="@dimen/dimens_l">
+        android:layout_below="@id/donation_requests_fragment_ll_filter_container">
 
-    </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/donation_requests_fragment_rl_donations_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m" />
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/donation_requests_fragment_tv_no_results"
