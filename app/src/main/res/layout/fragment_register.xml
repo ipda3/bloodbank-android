@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context=".ui.fragment.userCycle.newAccount.RegisterFragment">
+    tools:context=".ui.fragment.userCycle.RegisterFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/Create_New_Account_Toolbar"
@@ -34,7 +34,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/CreateNewAcc_Toolbar_Container">
+        android:layout_below="@id/CreateNewAcc_Toolbar_Container"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:id="@+id/register_fragment_btn_register_rl_sub_view"
@@ -45,14 +46,14 @@
                 android:id="@+id/register_fragment_et_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/name"
                 android:padding="@dimen/dim_m"
-                android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
                 android:singleLine="true"
                 android:textSize="@dimen/txt_size_m" />
 
@@ -61,15 +62,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/register_fragment_et_name"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/dim_m"
-                android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
                 android:singleLine="true"
                 android:textSize="@dimen/txt_size_m" />
 
@@ -78,15 +79,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/register_fragment_et_email"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg">
 
                 <Spinner
                     android:id="@+id/register_fragment_sp_blood_type"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingStart="@dimen/dim_m"
+                    android:textDirection="rtl">
 
                 </Spinner>
             </RelativeLayout>
@@ -96,9 +99,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/CreateNewAcc_Relative_Blood_Type"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:orientation="horizontal">
 
                 <TextView
@@ -111,8 +114,8 @@
                     android:drawableEnd="@drawable/date"
                     android:gravity="center"
                     android:hint="@string/birthDate"
-                    android:paddingEnd="@dimen/dim_m"
                     android:paddingStart="@dimen/dim_m"
+                    android:paddingEnd="@dimen/dim_m"
                     android:textSize="@dimen/txt_size_m" />
 
                 <TextView
@@ -124,8 +127,8 @@
                     android:drawableEnd="@drawable/date"
                     android:gravity="center"
                     android:hint="@string/lastDate"
-                    android:paddingEnd="@dimen/dim_m"
                     android:paddingStart="@dimen/dim_m"
+                    android:paddingEnd="@dimen/dim_m"
                     android:textSize="@dimen/txt_size_m" />
 
             </LinearLayout>
@@ -135,9 +138,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/CreateNewAcc_LinearLayout_Date"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -157,10 +160,10 @@
                     android:id="@+id/register_fragment_rl_spinner_city_container"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginStart="@dimen/dim_m"
-                    android:visibility="gone"
-                    android:background="@drawable/shape_edit_text_bg">
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:visibility="gone">
 
                     <Spinner
                         android:id="@+id/register_fragment_sp_city"
@@ -177,15 +180,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/CreateNewAcc_LinearLayout_Spinners"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
+                android:gravity="end|center"
                 android:hint="@string/phone"
                 android:inputType="phone"
+                android:maxLength="11"
                 android:padding="@dimen/dim_m"
-                android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
 
             <EditText
@@ -193,15 +198,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/register_fragment_et_phone_number"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
+                android:gravity="end|center"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="@dimen/dim_m"
-                android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
 
             <EditText
@@ -209,15 +215,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/register_fragment_et_password"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint="@string/passwore_sure"
+                android:gravity="end|center"
+                android:hint="@string/password_sure"
                 android:inputType="textPassword"
                 android:padding="@dimen/dim_m"
-                android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
+                android:paddingEnd="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
 
 
@@ -226,10 +233,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/register_fragment_et_confirmation_password"
-                android:layout_marginBottom="@dimen/dimens_l"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m"
+                android:layout_margin="@dimen/dimens_l"
                 android:background="@drawable/edit_move"
                 android:text="@string/reg"
                 android:textAlignment="center"

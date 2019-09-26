@@ -1,45 +1,33 @@
 <resources>
-    <string name="app_name">بنك الدم</string>
+    <string name="app_name">Blood Bank</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="lows">جميع الحقوق محفوظة لشركة ابداع تك للبرمجيات  2018</string>
-    <string name="cross">تخطى</string>
-    <string name="changecode">كود تغيير كلمة المرور</string>
-    <string name="remember">تذكرنى</string>
-    <string name="you_forget">هل نسيت كلمة المرور</string>
-    <string name="entet">دخول</string>
-    <string name="create_new">انشاء حساب جديد</string>
-    <string name="forget">نسيت كلمة المرور</string>
-    <string name="send">إرسال</string>
-    <string name="change">تغيير كلمة المرور</string>
-    <string name="phone">رقم الهاتف</string>
-    <string name="password">كلمة المرور</string>
-    <string name="check_code">كود التحقيق</string>
-    <string name="new_password">كلمة المرور الجديدة</string>
-    <string name="new_passwore_sure">تأكيد كلمة المرور الجديدة</string>
-    <string name="passwore_sure">تأكيد كلمة المرور</string>
+    <string name="lows">All rights reserved ipda3 Tech for software 2018</string>
+    <string name="cross">Skip</string>
+    <string name="changecode">Password change code</string>
+    <string name="remember">Remember me</string>
+    <string name="you_forget">did you forget your password</string>
+    <string name="entet">Login</string>
+    <string name="create_new">Create new account</string>
+    <string name="forget">Forget Password</string>
+    <string name="send">Send</string>
+    <string name="change">Change Password</string>
+    <string name="phone">Phone number</string>
+    <string name="password">Password</string>
+    <string name="check_code">Confirmation code</string>
+    <string name="new_password">New password</string>
+    <string name="new_password_sure">Confirm the new password</string>
+    <string name="password_sure">confirm password</string>
     <string name="notification">من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من من ررمن </string>
-    <string name="bloodtypes">فصائل الدم</string>
-    <string name="gharbia">الغربية</string>
-    <string name="menya">المنيا</string>
-    <string name="cairo">القاهرة</string>
-    <string name="kafrelshiekh">كفر الشيخ</string>
-    <string name="sharqia">الشرقية</string>
-    <string name="daqhlia">الدقهلية</string>
-    <string name="goverments">المحافظات</string>
-    <string name="save">حفظ</string>
-    <string name="eljawal">الجوال : 01270351728</string>
-    <string name="emailaddress">البريد الالكترونى : amrramadan888@gmail.com</string>
+    <string name="bloodtypes">Blood type</string>
+    <string name="governorates">Governorates</string>
+    <string name="save">Save</string>
 
-    <string name="notificationforrequest">تنبيه بخصوص طلبك</string>
-    <string name="notificationtime">الاحد 2018/11/30"</string>
-
-
-    <string name="twaslM3na">تواصل معنا</string>
-    <string name="mssgadress">عنوان الرسالة</string>
-    <string name="mssgtext">نص الرسالة</string>
-    <string name="age">العمر</string>
-    <string name="numbers">عدد الأكياس</string>
+    <string name="connect_us">Connect us</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="age">Age</string>
+    <string name="numbers">Number of bags</string>
     <string name="hospitalname">إسم المستشفى</string>
     <string name="hospitaladdress">عنوان المستشفى</string>
     <string name="notes">الملاحظات</string>
@@ -53,11 +41,12 @@
     <string name="bloodtype">فصيلة الدم</string>
     <string name="lastdate">اخر تاريخ للتبرع</string>
 
-    <string name="name_">: الإسم</string>
-    <string name="email_">: البريد الإلكترونى</string>
-    <string name="birthdate_">: تاريخ الميلاد</string>
-    <string name="bloodtype_">: فصيلة الدم</string>
-    <string name="lastdate_">: اخر تاريخ للتبرع</string>
+    <string name="name_">الإسم :</string>
+    <string name="age_">العمر :</string>
+    <string name="email_">البريد الإلكترونى :</string>
+    <string name="birthdate_">تاريخ الميلاد :</string>
+    <string name="bloodtype_">فصيلة الدم :</string>
+    <string name="lastdate_">اخر تاريخ للتبرع :</string>
 
     <string name="reg">تسجيل</string>
     <string name="title_activity_articles">ArticlesActivity</string>
@@ -107,7 +96,7 @@
     <string name="invalid_email">البريد الالكترونى يجب ان يكون بهذا الشكل  example@example.com</string>
     <string name="invalid_password">Password mast be more than 6 char and number</string>
     <string name="invalid_Phone">Phone number mast be 11 number</string>
-    <string name="invalid_confirm_password">Confirm password not match</string>
+    <string name="invalid_confirm_password">تأكيد كلمة المرور غير متطابقة</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="careing">الوقاية من الأمراض</string>
@@ -115,7 +104,7 @@
     <string name="offline">برجاء التحقق من الإتصال بالإنترنت</string>
 
     <string name="error">حدث خطأ ما</string>
-    <string name="waiit">برجاء الإنتظار</string>
+    <string name="waiit">برجاء الإنتظار...</string>
     <string name="callUsMsg">تم إرسال الرسالة</string>
     <string name="enterKeyword">ادخل كلمة البحث هنا ...</string>
     <string name="location">اختيار الموقع</string>
@@ -141,7 +130,7 @@
     <string name="birthDate">تاريخ الميلاد</string>
     <string name="lastDate">اخر تاريخ للتبرع</string>
     <string name="enterMessAdress">ادخل عنوان الرسالة</string>
-    <string name="messageContent">نص الرسالة</string>
+    <string name="messageContent">ادخل نص الرسالة</string>
     <string name="enterPatientName">برجاء إدخال اسم المريض</string>
     <string name="enterPatientAge">برجاء إدخال عمر المريض</string>
     <string name="enterbagsNumber">برجاء إدخال عدد الأكياس المطلوبة</string>
@@ -158,9 +147,12 @@
     <string name="invalid_Email">البريد الإكتروني يجب ان يكون بهذه الصيغة \" example@example.com\".</string>
     <string name="no_notificaation">لا يوجد إشعارات جديدة</string>
     <string name="phonemm">jrgkjhertjek</string>
-    <string name="select_city">من فضلك اختر المدينة</string>
+    <string name="select_city">برجاء اختيار المدينة</string>
     <string name="select_city_"> اختر المدينة</string>
-    <string name="select_blood_bank">من فضلك اختر فصيلة الدم</string>
+    <string name="select_governrate">برجاء اختيار المحافظة</string>
+    <string name="no_items">لا يوجد عناصر</string>
+
+    <string name="select_blood_bank">برجاء اختيار فصيلة الدم</string>
     <string name="failed_required">الحقل مطلوب</string>
     <string name="select_governorates">اختر المحافظه</string>
     <string name="date_btd_title">اختر تاريخ ميلادك</string>
@@ -179,6 +171,24 @@
     <string name="phone_">رقم الجوال :</string>
     <string name="counter_order">عدد الأكياس المطلوبة :</string>
     <string name="home">الرئيسية</string>
+    <string name="logout">؟!هل انت متأكد انك تريد تسجيل الخروج</string>
 
+    <string name="gharbia">الغربية</string>
+    <string name="menya">المنيا</string>
+    <string name="cairo">القاهرة</string>
+    <string name="kafrelshiekh">كفر الشيخ</string>
+    <string name="sharqia">الشرقية</string>
+    <string name="daqhlia">الدقهلية</string>
 
+    <string name="eljawal">الجوال : 01270351728</string>
+    <string name="emailaddress">البريد الالكترونى : amrramadan888@gmail.com</string>
+
+    <string name="notificationforrequest">تنبيه بخصوص طلبك</string>
+    <string name="notificationtime">الاحد 2018/11/30"</string>
+    <string name="enterhospitaladdress">برجاء ادخال عنوان المستشفى او اختياره من الخريطة</string>
+    <string name="add_to_favourite">تمت الإضافة</string>
+    <string name="remove_from_favourite">تمت الإزالة</string>
+    <string name="all_blood">جميع الفصائل</string>
+    <string name="all_governorates">جميع المحافظات</string>
+    <string name="title_activity_maps_activityzdsgfdgs">Map</string>
 </resources>

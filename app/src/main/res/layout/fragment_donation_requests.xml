@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".ui.fragment.articles_requests.DonationRequestsFragment">
+    tools:context=".ui.fragment.articlesAndRequests.DonationRequestsFragment">
 
     <ImageView
         android:id="@+id/donation_requests_fragment_iv_search"

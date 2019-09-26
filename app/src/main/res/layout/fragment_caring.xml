@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/greylight">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_sss"
+        android:background="@color/greydark" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/Caring_ImageView_Main"
+                android:id="@+id/caring_fragment_iv_image_post"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/caring"
-                android:layout_below="@id/toolbar"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/dim_m" />
+                android:layout_marginTop="@dimen/dim_m"
+                android:scaleType="fitXY" />
 
             <RelativeLayout
                 android:id="@+id/rlative_caring"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_6xl"
-                android:layout_below="@id/Caring_ImageView_Main"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_below="@id/caring_fragment_iv_image_post"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
                 android:layout_marginTop="@dimen/dim_m"
-                android:background="@color/white">
+                android:background="@drawable/shape_post_text">
 
                 <TextView
-                    android:id="@+id/Caring_Tv_Title"
+                    android:id="@+id/caring_fragment_tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -50,7 +55,7 @@
                     android:background="@drawable/circle2">
 
                     <ImageView
-                        android:id="@+id/Caring_ImageView_Care"
+                        android:id="@+id/caring_fragment_iv_add_to_favourite"
                         android:layout_width="@dimen/dimens_l"
                         android:layout_height="@dimen/dimens_l"
                         android:layout_centerInParent="true"
@@ -59,12 +64,12 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/Caring_TextView_Content"
+                android:id="@+id/caring_fragment_tv_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/rlative_caring"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
                 android:layout_marginTop="@dimen/dim_ss"
                 android:background="@color/white"
                 android:padding="@dimen/dim_s"

@@ -5,20 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context=".ui.activity.splashCycel.SplashActivity">
-    <TextView
-        android:id="@+id/Splash_Tv_IsConnected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/connection"
-        android:textSize="@dimen/txt_size_m"
-        android:gravity="center"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        android:layout_marginStart="@dimen/dimens_l"
-        android:layout_marginEnd="@dimen/dimens_l"
-        android:layout_marginTop="@dimen/dimens_xxxxl"
-        android:visibility="gone"/>
+    tools:context=".ui.activity.startUpCycle.SplashActivity">
 
     <ImageView
         android:id="@+id/Splash_Iv_Logo"

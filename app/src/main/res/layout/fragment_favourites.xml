@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="@string/no_results"
+        android:text="@string/no_items"
         android:textColor="@color/move"
         android:textSize="@dimen/txt_size_xxl"
         android:textStyle="bold"

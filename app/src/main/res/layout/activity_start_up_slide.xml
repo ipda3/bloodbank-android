@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context=".ui.activity.splashCycel.StartUpSlideActivity">
+    tools:context=".ui.activity.startUpCycle.SliderActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/Start_Up_Slide_ViewPager"
@@ -42,11 +42,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/edit_greydark"
+        android:background="@drawable/btn_greydark"
         android:text="@string/cross"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        android:layout_margin="@dimen/dim_m"
         android:textSize="@dimen/txt_size_l" />
 
 </RelativeLayout>

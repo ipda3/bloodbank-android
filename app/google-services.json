@@ -476,7 +476,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:928030698520:android:9f6bcd90c50daf17",
         "android_client_info": {
-          "package_name": "com.ipd3.tech.bloodBank.project"
+          "package_name": "com.ipd3.tech.bloodBank.code"
         }
       },
       "oauth_client": [
@@ -484,7 +484,7 @@
           "client_id": "928030698520-cisksmv5gj67h37akfaac4a4bi8v8fb2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ipd3.tech.bloodBank.project",
+            "package_name": "com.ipd3.tech.bloodBank.code",
             "certificate_hash": "e181c5e0d5b4d217789c08aad127e7ed85addb76"
           }
         },

@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.profile.EditProfileFragment">
+    tools:context=".ui.fragment.userCycle.EditProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:id="@+id/edit_profile_fragment_rl_sub_view"
@@ -18,11 +19,11 @@
                 android:id="@+id/edit_profile_fragment_et_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint=""
+                android:hint="@string/name"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
@@ -32,11 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/edit_profile_fragment_et_name"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint=""
+                android:hint="@string/email"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
@@ -46,15 +47,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/edit_profile_fragment_et_email"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg">
 
                 <Spinner
                     android:id="@+id/edit_profile_fragment_sp_blood_type"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingEnd="@dimen/dim_m"
+                    android:paddingStart="@dimen/dim_m"
+                    android:textDirection="rtl"
                     android:textSize="@dimen/txt_size_m" />
             </RelativeLayout>
 
@@ -64,9 +68,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/edit_profile_fragment_rl_blood_type_container"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:orientation="horizontal">
 
                 <TextView
@@ -78,20 +82,20 @@
                     android:background="@drawable/shape_edit_text_bg"
                     android:drawableEnd="@drawable/date"
                     android:gravity="center"
-                    android:hint=""
+                    android:hint="@string/birthDate"
                     android:paddingEnd="@dimen/dim_m"
                     android:paddingStart="@dimen/dim_m"
                     android:textSize="@dimen/txt_size_m" />
 
                 <TextView
-                    android:id="@+id/edit_profile_fragment_tv_last_donition_data"
+                    android:id="@+id/edit_profile_fragment_tv_last_donation_data"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/shape_edit_text_bg"
                     android:drawableEnd="@drawable/date"
                     android:gravity="center"
-                    android:hint=""
+                    android:hint="@string/lastDate"
                     android:paddingEnd="@dimen/dim_m"
                     android:paddingStart="@dimen/dim_m"
                     android:textSize="@dimen/txt_size_m" />
@@ -102,9 +106,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/Adjust_Information_Linear_Date"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -143,27 +147,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/Adjust_Information_Linear_Spinners"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint=""
+                android:gravity="start|center"
+                android:hint="@string/phone"
                 android:inputType="number"
+                android:maxLength="11"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
-                android:textSize="@dimen/txt_size_m" />
+                android:textSize="@dimen/txt_size_m"
+                tools:ignore="TextFields" />
 
             <EditText
                 android:id="@+id/edit_profile_fragment_et_password"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/edit_profile_fragment_et_phone_number"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint=""
-                android:inputType="textPassword"
+                android:hint="@string/password"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
@@ -173,12 +179,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/edit_profile_fragment_et_password"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint=""
-                android:inputType="textPassword"
+                android:hint="@string/password_sure"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
@@ -188,10 +193,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/edit_profile_fragment_et_confirmation_password"
-                android:layout_marginBottom="@dimen/dimens_xl"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginBottom="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/edit_move"
                 android:text="@string/adjust"
                 android:textAlignment="center"

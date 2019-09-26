@@ -4,7 +4,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.ipd3.tech.bloodBank.project"
+        applicationId "com.ipd3.tech.bloodBank.code"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
@@ -58,5 +58,7 @@ dependencies {
 
     //Transparent statusBar
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    implementation project(path: ':notifyme')
+
 
 }

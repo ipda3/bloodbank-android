@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash">
@@ -30,29 +29,31 @@
                 android:id="@+id/login_fragment_et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/txt_size_m"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/phone"
                 android:inputType="phone"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
-                android:textSize="@dimen/txt_size_m" />
+                android:maxLength="11"
+                android:textSize="@dimen/txt_size_m"
+                android:gravity="end|center" />
 
             <EditText
                 android:id="@+id/login_fragment_et_password"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
-                android:layout_marginTop="@dimen/txt_size_m"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dimens_l"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/password"
-                android:inputType="textPassword"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
-                android:textSize="@dimen/txt_size_m" />
+                android:textSize="@dimen/txt_size_m"
+                android:gravity="start|center"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -79,13 +80,12 @@
                         android:id="@+id/login_fragment_iv_password_icon"
                         android:layout_width="@dimen/dimens_between"
                         android:layout_height="@dimen/dimens_between"
-                        android:layout_marginStart="@dimen/dim_m"
-                        android:layout_marginEnd="@dimen/dim_s"
-                        android:padding="@dimen/dim_s"
-                        android:layout_centerVertical="true"
-                        android:layout_alignTop="@id/login_fragment_tv_forget_password"
                         android:layout_alignBottom="@id/login_fragment_tv_forget_password"
+                        android:layout_alignTop="@id/login_fragment_tv_forget_password"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dim_s"
                         android:layout_toStartOf="@id/login_fragment_tv_forget_password"
+                        android:padding="@dimen/dim_s"
                         android:src="@drawable/password" />
 
                     <TextView
@@ -105,8 +105,8 @@
                 android:id="@+id/login_fragment_btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
                 android:layout_marginTop="@dimen/dimens_xl"
                 android:background="@drawable/edit_green"
                 android:text="@string/entet"
@@ -119,8 +119,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimens_l"
-                android:layout_marginEnd="@dimen/dimens_l"
-                android:layout_marginStart="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
                 android:layout_marginTop="@dimen/dimens_l"
                 android:background="@drawable/edit_blue"
                 android:text="@string/create_new"

@@ -190,12 +190,6 @@
                 android:layout_marginStart="@dimen/dimens_l"
                 android:layout_marginTop="@dimen/dim_m" />
 
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimens_note_txt" />
-
             <Button
                 android:id="@+id/donation_details_fragment_btn_calling"
                 android:layout_width="match_parent"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context=".ui.fragment.donation.CreateDonationRequestsFragment">
+    tools:context=".ui.fragment.donation.CreateDonationRequestFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,9 +19,9 @@
                 android:id="@+id/create_donation_requests_fragment_et_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_l"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/name"
                 android:paddingEnd="@dimen/dim_m"
@@ -33,23 +33,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_et_name"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/age"
+                android:inputType="number"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
-                android:textSize="@dimen/txt_size_m" />
+                android:textSize="@dimen/txt_size_m"
+                android:gravity="start|center"/>
 
             <RelativeLayout
                 android:id="@+id/create_donation_requests_fragment_rl_blood"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_et_age"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m">
@@ -67,23 +69,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_rl_blood"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/numbers"
+                android:inputType="number"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
-                android:textSize="@dimen/txt_size_m" />
+                android:textSize="@dimen/txt_size_m"
+                android:gravity="start|center"/>
 
             <EditText
                 android:id="@+id/create_donation_requests_fragment_et_hospital_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_et_numbers"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/hospitalname"
                 android:paddingEnd="@dimen/dim_m"
@@ -96,8 +100,8 @@
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/create_donation_requests_fragment_et_hospital_name"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_between2"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:layout_toStartOf="@id/create_donation_requests_fragment_et_hospital_name"
                 android:background="@drawable/shape_edit_text_bg"
                 android:padding="@dimen/careimage"
@@ -108,9 +112,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_et_hospital_name"
-                android:layout_marginEnd="@dimen/dimens_10xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_between2"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_toStartOf="@+id/create_donation_requests_fragment_Iv_open_map"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:gravity="center_vertical"
                 android:hint="@string/hospitaladdress"
@@ -118,16 +123,16 @@
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:singleLine="true"
-                android:textSize="@dimen/txt_size_s" />
+                android:textSize="@dimen/txt_size_m" />
 
             <LinearLayout
                 android:id="@+id/create_donation_requests_fragment_ll_spinners_addres_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_et_hospital_address"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -146,11 +151,13 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/create_donation_requests_fragment_Relative_City"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/dim_s"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_edit_text_bg">
+                    android:background="@drawable/shape_edit_text_bg"
+                    android:visibility="gone">
 
                     <Spinner
                         android:id="@+id/create_donation_requests_fragment_sp_city"
@@ -167,26 +174,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@+id/create_donation_requests_fragment_ll_spinners_addres_container"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/phone"
+                android:inputType="phone"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
-                android:textSize="@dimen/txt_size_m" />
+                android:textSize="@dimen/txt_size_m"
+                android:gravity="end|center"/>
 
             <EditText
                 android:id="@+id/create_donation_requests_fragment_et_notes"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_note_txt"
                 android:layout_below="@+id/create_donation_requests_fragment_et_phone"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
-                android:layout_marginTop="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
                 android:background="@drawable/shape_edit_text_bg"
                 android:hint="@string/notes"
                 android:paddingEnd="@dimen/dim_m"
+                android:gravity="top"
                 android:paddingStart="@dimen/dim_m"
                 android:selectAllOnFocus="false"
                 android:singleLine="false"
@@ -197,7 +207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/create_donation_requests_fragment_et_notes"
-                android:layout_margin="@dimen/dimens_xl"
+                android:layout_margin="@dimen/dim_m"
                 android:background="@drawable/edit_move"
                 android:text="@string/sendrequest"
                 android:textAlignment="center"

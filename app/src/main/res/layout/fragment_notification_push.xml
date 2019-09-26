@@ -6,10 +6,27 @@
     android:background="@drawable/splash"
     tools:context=".ui.fragment.notification.NotificationFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/notification_fragment_rv_notification_list"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/notifications_list_fragment_srl_notifications_list_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/notification_fragment_rv_notification_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dim_m"
+                android:layout_marginTop="@dimen/dim_m"
+                android:layout_marginEnd="@dimen/dim_m" />
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/notification_fragment_tv_no_results"

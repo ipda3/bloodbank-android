@@ -7,9 +7,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
+            android:id="@+id/call_us_fragment_relative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -42,7 +44,9 @@
                             android:id="@+id/fragment_call_us_iv_phone_image"
                             android:layout_width="@dimen/dimens_between"
                             android:layout_height="@dimen/dimens_between"
+                            android:layout_alignBottom="@+id/fragment_call_us_tv_phone"
                             android:layout_alignParentStart="true"
+                            android:layout_alignTop="@+id/fragment_call_us_tv_phone"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/dimens_l"
                             android:src="@drawable/call" />
@@ -52,10 +56,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/dimens_l"
                             android:layout_marginStart="@dimen/dimens_l"
                             android:layout_marginTop="@dimen/dim_m"
                             android:layout_toEndOf="@id/fragment_call_us_iv_phone_image"
                             android:text=""
+                            android:gravity="center_vertical"
                             android:textColor="@color/black"
                             android:textSize="@dimen/txt_size_between" />
 
@@ -70,7 +76,9 @@
                             android:id="@+id/fragment_call_us_iv_email_image"
                             android:layout_width="@dimen/dimens_between"
                             android:layout_height="@dimen/dimens_between"
+                            android:layout_alignBottom="@+id/fragment_call_us_tv_email"
                             android:layout_alignParentStart="true"
+                            android:layout_alignTop="@+id/fragment_call_us_tv_email"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="@dimen/dimens_l"
                             android:src="@drawable/email" />
@@ -80,12 +88,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/dimens_l"
                             android:layout_marginStart="@dimen/dimens_l"
                             android:layout_marginTop="@dimen/dim_m"
                             android:layout_toEndOf="@id/fragment_call_us_iv_email_image"
-                            android:text=""
                             android:textColor="@color/black"
-                            android:textSize="@dimen/txt_size_between" />
+                            android:textSize="@dimen/txt_size_between"
+                            android:gravity="end|center_vertical"
+                            />
 
                     </RelativeLayout>
 
@@ -153,7 +163,7 @@
                 android:layout_marginTop="@dimen/dimens_l"
                 android:background="@color/move"
                 android:gravity="center_vertical"
-                android:text="@string/twaslM3na"
+                android:text="@string/connect_us"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/txt_size_m"
@@ -164,11 +174,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_xxxxl"
                 android:layout_below="@id/call_us_fragment_tv_title"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
                 android:layout_marginTop="@dimen/dimens_l"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint="@string/mssgadress"
+                android:hint="@string/title"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
@@ -178,11 +188,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_store_image"
                 android:layout_below="@id/call_us_fragment_et_message_address"
-                android:layout_marginEnd="@dimen/dimens_xl"
-                android:layout_marginStart="@dimen/dimens_xl"
+                android:layout_marginEnd="@dimen/dim_m"
+                android:layout_marginStart="@dimen/dim_m"
                 android:layout_marginTop="@dimen/dimens_l"
                 android:background="@drawable/shape_edit_text_bg"
-                android:hint="@string/mssgtext"
+                android:hint="@string/content"
                 android:paddingEnd="@dimen/dim_m"
                 android:paddingStart="@dimen/dim_m"
                 android:textSize="@dimen/txt_size_m" />
@@ -192,7 +202,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/call_us_fragment_et_message_text"
-                android:layout_margin="@dimen/dimens_xl"
+                android:layout_margin="@dimen/dimens_l"
                 android:background="@drawable/edit_move"
                 android:gravity="center_vertical"
                 android:text="@string/send"

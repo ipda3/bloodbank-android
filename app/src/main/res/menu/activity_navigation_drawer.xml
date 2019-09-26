@@ -20,22 +20,21 @@
         <item
             android:id="@+id/main"
             android:icon="@drawable/home"
-            android:title="الرئيسيه" />
+            android:title="الرئيسيه"
+            android:checked="true"/>
+
+        <item
+            android:id="@+id/conn"
+            android:icon="@drawable/email"
+            android:title="تواصل معنا" />
+        <item
+            android:id="@+id/abo"
+            android:icon="@drawable/about"
+            android:title="عن التطبيق" />
+
+        <item
+            android:id="@+id/out"
+            android:icon="@drawable/exit"
+            android:title="تسجيل الخروج" />
     </group>
-
-
-    <item
-        android:id="@+id/conn"
-        android:icon="@drawable/email"
-        android:title="تواصل معنا" />
-    <item
-        android:id="@+id/abo"
-        android:icon="@drawable/about"
-        android:title="عن التطبيق" />
-
-    <item
-        android:id="@+id/out"
-        android:icon="@drawable/exit"
-        android:title="تسجيل الخروج" />
-
 </menu>

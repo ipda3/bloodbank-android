@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash"
-    tools:context=".ui.activity.authCycle.UserCycleActivity">
+    tools:context=".ui.activity.authentication.UserCycleActivity">
 
     <FrameLayout
-        android:id="@+id/frame"
+        android:id="@+id/User_Cycle_Activity_EmptyFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
